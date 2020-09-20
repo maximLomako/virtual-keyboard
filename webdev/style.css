@@ -85,9 +85,7 @@ body {
 
 .btn:hover {
     cursor: pointer;
-    background: cornflowerblue;
-    text-decoration: underline;
-    color: cornsilk;
+    background: #009CC2;
 }
 
 .hero-nav {
@@ -104,11 +102,8 @@ body {
     margin-right: 30px;
 }
 
-.hero-icon__link:hover {
-    cursor: pointer;
-    border-bottom: 1px solid #FFFFFF;
 
-}
+
 
 header {
     padding-top: 23px;
@@ -150,27 +145,25 @@ header {
     cursor: pointer;
 }
 
+.header-nav__link--active {
+    cursor: pointer;
+    border-bottom: 1px solid #FFFFFF;
+    opacity: 1;
+}
+
 .header-logo {
     opacity: 1;
     margin-right: 101px;
     margin-top: 3px;
+    list-style: none;
 }
 
-.header-nav__link--active {
+.header-nav__link:hover {
     opacity: 1;
+    border-bottom: 1px solid #FFFFFF;
+    /*padding-bottom: 1px;*/
 }
 
-.header-nav__link--active:after {
-    display: block;
-    position: absolute;
-    content: "";
-    height: 1px;
-    width: 100%;
-    background: #FFFFFF;
-    left: 0;
-    bottom: -5%;
-    opacity: 1;
-}
 
 /*second section*/
 .rappresent {
@@ -283,9 +276,11 @@ header {
 }
 .arrow-previous {
     margin-right: 6px;
+    cursor: pointer;
 }
 .arrow-next {
     margin-left: 6px;
+    cursor: pointer;
 }
 
 .control__slash-item{
@@ -435,11 +430,26 @@ header {
     display: flex;
     margin-right: 20px;
     padding-left: 0;
+    opacity: 0.98;
 }
 
 .footer-nav__element {
     margin-right: 40px;
     position: relative;
+    opacity: 0.98;
+}
+
+.footer-nav__element:hover {
+    opacity: 1;
+    border-bottom: 1px solid #FFFFFF;
+    cursor: pointer;
+
+}
+
+.footer-nav__element--last:hover {
+    opacity: 1;
+    border-bottom: 1px solid #FFFFFF;
+    cursor: pointer;
 }
 
 .footer-nav__element:after {
