@@ -31,7 +31,7 @@ body {
     font-weight: bold;
 }
 
-.hero {
+.your-Life {
     background-image: url("./assets/bg-image.jpg");
     height: 744px;
     /*    потом убрать высоту*/
@@ -41,16 +41,16 @@ body {
     align-items: center;
 }
 
-.hero-content {
+.your-Life-content {
     font-weight: bold;
     display: flex;
     flex-direction: column;
-    margin-top: 156px;
+    margin-top: 232px;
     margin-bottom: 169px;
 
 }
 
-.hero-content__title {
+.your-Life-content__title {
     font-size: 64px;
     line-height: 75px;
     display: flex;
@@ -61,7 +61,7 @@ body {
     margin-left: 7px;
 }
 
-.hero-content__subtitle {
+.your-Life-content__subtitle {
     font-weight: normal;
     font-size: 18px;
     line-height: 140%;
@@ -88,31 +88,38 @@ body {
     background: #009CC2;
 }
 
-.hero-nav {
+.your-Life-nav {
     margin-left: -9px;
 }
 
-.hero-icon__block {
+.your-Life-icon__block {
     list-style: none;
     display: flex;
 
 }
 
-.hero-icon__link {
+.your-Life-icon__link {
     margin-right: 30px;
 }
 
-
+.your-Life-icon__link:hover {
+    cursor: pointer;
+    border-bottom: 1px solid #FFFfFF;
+}
 
 
 header {
+    position: absolute;
+    transform: translate(-50%);
+    left: 50%;
     padding-top: 23px;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     line-height: 140%;
-    opacity: 0.8;
+    background: #000000;
+    color: #FFFfFF;
 }
 
 .header-nav {
