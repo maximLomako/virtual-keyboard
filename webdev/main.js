@@ -1,6 +1,5 @@
 const headerNavElement =
   document.querySelectorAll('.header-nav__link');
-console.log(headerNavElement);
 
 headerNavElement.forEach(element => {
   element.addEventListener('mouseover', () => {
@@ -15,3 +14,4 @@ headerNavElement.forEach(element => {
     element.classList.remove('header-nav__link--active');
   })
 })
+

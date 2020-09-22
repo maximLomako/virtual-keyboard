@@ -1,7 +1,7 @@
 @font-face {
     font-family: "Roboto";
 
-    src: url("./assets/Roboto-Regular.woff") format("woff"), /* Modern Browsers */ url("./fonts/Roboto-Regular.woff2") format("woff2"); /* Modern Browsers */
+    src: url("./assets/Roboto-Regular.woff") format("woff"), /* Modern Browsers */ url("./assets/Roboto-Regular.woff2") format("woff2"); /* Modern Browsers */
     font-weight: normal;
     font-style: normal;
 }
@@ -13,6 +13,7 @@ html {
 
 body {
     width: 1600px;
+    position: relative;
 }
 
 .visuallyhidden {
@@ -205,8 +206,9 @@ header {
 }
 
 .rappresent-title {
-    margin-top: -4px;
+    margin-top: 1px;
     max-width: 370px;
+    padding-left: 5px;
 }
 
 .subtitle {
@@ -261,6 +263,8 @@ header {
     justify-content: flex-start;
     font-size: 18px;
     line-height: 140%;
+    padding-left: 557px;
+    padding-top: 7px;
 }
 
 .slider-wrapper {
@@ -277,25 +281,34 @@ header {
 .slide-item {
     margin-right: 30px;
 }
+
 .control-panel {
-    padding-left: 561px;
-    padding-top: 2px;
+    padding-left: 559px;
+    padding-top: 7px;
 }
+
 .arrow-previous {
     margin-right: 6px;
     cursor: pointer;
+
 }
+
 .arrow-next {
     margin-left: 6px;
     cursor: pointer;
 }
 
-.control__slash-item{
+.arrow:hover {
+    opacity: 0.5;
+}
+
+.control__slash-item {
     margin: 0 5px;
 }
+
 /**/
 .implement {
-    padding-top: 120px;
+    padding-top: 116px;
     padding-bottom: 135px;
 
 }
@@ -333,21 +346,23 @@ header {
     letter-spacing: 1px;
     text-transform: uppercase;
     color: #FFFFFF;
-    margin-top: 217px;
+    margin-top: 206px;
     margin-bottom: 30px;
 }
 
 .input-group {
     display: flex;
-    margin-bottom: 277px;
+    margin-bottom: 220px;
 }
 
 .subscribe-input {
     font-size: 14px;
     line-height: 140%;
     color: #373737;
-    padding: 12px 165px;
+    padding: 13px 171px;
     padding-left: 24px;
+    margin-right: -1px;
+    border: none;
 }
 
 .subscribe-btn {
@@ -363,7 +378,7 @@ header {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    padding-top: 104px;
+    padding-top: 102px;
     padding-bottom: 181px;
 }
 
@@ -388,6 +403,17 @@ header {
     display: flex;
 }
 
+.download-btn__text {
+    font-weight: 900;
+    padding-left: 18px;
+    padding-right: 22px;
+}
+
+.download-btn__text--android {
+    padding-left: 15px;
+    padding-right: 19px;
+}
+
 .download__button-block--margin {
     margin-right: 28px;
 }
@@ -396,8 +422,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 13px 18px;
-    padding-left: 18px;
+    padding: 0;
 }
 
 .download-btn__icon {
@@ -409,8 +434,12 @@ header {
     align-items: center;
 }
 
-.download-btn__icon--android {
+.download-btn__icon--apple {
     padding: 13px 20px;
+}
+
+.download-btn__icon--android {
+    padding: 11px 20px;
 }
 
 .footer {
@@ -451,6 +480,7 @@ header {
     border-bottom: 1px solid #FFFFFF;
     cursor: pointer;
 
+
 }
 
 .footer-nav__element--last:hover {
@@ -482,3 +512,6 @@ header {
     text-align: center;
     color: #818181;
 }
+
+/*check*/
+
