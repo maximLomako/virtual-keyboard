@@ -1,0 +1,151 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  max-width: 1920px;
+  position: relative;
+}
+
+.visuallyhidden {
+  position: absolute;
+  overflow: hidden;
+  height: 1px;
+  width: 1px;
+  padding: 0;
+  border: 0;
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  position: absolute;
+  transform: translate(-50%);
+  left: 50%;
+  width: 85.714rem;
+}
+
+.header-content {
+  padding-top: 4.285rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__title {
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2.285rem;
+  line-height: 110%;
+  letter-spacing: 0.06em;
+  color: #F1CDB3;
+  margin-bottom: 0.714rem;
+}
+
+.header__subtitle {
+  color: #FFFFFF;
+  font-family: Arial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.928rem;
+  line-height: 1.071rem;
+  letter-spacing: 0.1em;
+  padding-left: 0.3rem;
+}
+
+.nav {
+  margin-top: -4px;
+}
+
+.nav-block {
+  display: flex;
+
+}
+
+.nav__element {
+  font-family: Arial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.071rem;
+  line-height: 160%;
+  color: #FAFAFA;
+  list-style: none;
+  margin-left: 2.58rem;
+  cursor: pointer;
+}
+
+.nav__element--active {
+  border-bottom: 0.15rem solid#F1CDB3;
+}
+
+.not-only {
+  background: url('../../assets/images/noise_transparent@2x.png'),
+    radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+  ;
+}
+
+
+.not-only-wrapper {
+  padding-top: 179px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.not-only__content {
+  margin-top: -79px;
+}
+
+.title {
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 3.142rem;
+  line-height: 130%;
+  color: #FFFFFF;
+  max-width: 22.14rem;
+  margin-bottom: 3rem;
+}
+
+.subtitle {
+  font-family: Arial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.071rem;
+  line-height: 160%;
+  color: #CDCDCD;
+  max-width: 32.857rem;
+  margin-bottom: 3rem;
+}
+
+.btn {
+  display: inline-block;
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.214rem;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #292929;
+  padding: 15px 45px;
+  background: #F1CDB3;
+  border-radius: 100px;
+  border: none;
+}
