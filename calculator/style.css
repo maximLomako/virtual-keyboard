@@ -62,11 +62,3 @@ body {
     font-size: 2.5rem;
     padding: 0 10px; 
 }
-.description {
-    position: absolute;
-    color: #ffff;
-    padding-bottom: 10px;
-}
-.description li {
-    padding: 10px 0;
-}
