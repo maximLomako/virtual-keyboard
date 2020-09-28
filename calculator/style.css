@@ -5,6 +5,7 @@
 }
 
 body {
+    position: relative;
     padding: 0;
     margin: 0;
     background: linear-gradient(to right, #00AAFF, #00FF6C);
@@ -31,8 +32,8 @@ body {
     background-color: rgba(255, 255, 255, .9);
 }
 
-.span-two {
-    grid-column: span 2;
+.span-four {
+    grid-column: span 4;
 }
 
 .output {
@@ -55,4 +56,17 @@ body {
 .output .current-operand {
     color: white;
     font-size: 2.5rem;
+}
+.output__num {
+   color: white;
+    font-size: 2.5rem;
+    padding: 0 10px; 
+}
+.description {
+    position: absolute;
+    color: #ffff;
+    padding-bottom: 10px;
+}
+.description li {
+    padding: 10px 0;
 }
