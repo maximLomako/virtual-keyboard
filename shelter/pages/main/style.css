@@ -149,3 +149,43 @@ body {
   border-radius: 100px;
   border: none;
 }
+
+.about-container {
+  max-width: 969px;
+}
+
+.about-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 80px;
+  padding-bottom: 90px;
+}
+.about-img{
+  margin-top: -10px;
+}
+.about-content{
+  padding-top: 15px;
+}
+
+.about-content__title {
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #545454;
+  margin-bottom: 25px;
+}
+
+.about-content__subtitle {
+  font-family: Arial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 160%;
+  color: #4C4C4C;
+  margin-bottom: 25px;
+  max-width: 430px;
+}
