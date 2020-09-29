@@ -96,9 +96,9 @@ body {
 }
 
 .not-only {
-  background: url('../../assets/images/noise_transparent@2x.png'),
-    radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
-  ;
+  background: url('/assets/images/noise_transparent.png'),
+  radial-gradient(100% 215.42% at 0% 0%, #5b483a 0%, #262425 100%),
+  #211f20;
 }
 
 
@@ -271,4 +271,198 @@ body {
   background-color: #ffff;
   border: 2px solid #F1CDB3;
   padding: 13px 43px;
+}
+
+.help-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.help__title {
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #545454;
+  text-align: center;
+  margin-bottom: 60px;
+  margin-top: 80px;
+}
+
+.help-icons__wrapper{
+  display: grid;
+  grid-template-columns: 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5%;
+  grid-template-rows: 50% 50%;
+  width: 1200px;
+  padding-bottom: 45px;
+}
+.help-icon__block{
+  margin-bottom: 55px;
+}
+
+.help-icon__block:nth-of-type(1) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1 / span 4;
+  padding-left: 13px;
+  
+} 
+
+.help-icon__block:nth-of-type(2) {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   grid-column: 5 / span 4;
+
+}
+.help-icon__block:nth-of-type(3) {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   grid-column: 9 / span 4;
+       padding-right: 24px;
+}
+.help-icon__block:nth-of-type(4) {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   grid-column: 13 / span 3;
+   padding-left: 7px;
+
+}
+.help-icon__block:nth-of-type(5) {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   grid-column: 17 / span 3;
+   padding-left: 20px;
+
+}
+.help-icon__block:nth-of-type(6) {
+  display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   grid-column: 3 / span 3;
+   padding-left: 10px;
+
+}
+.help-icon__block:nth-of-type(7) {
+  display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   grid-column: 7 / span 2;
+   padding-left: 18px;
+
+}
+.help-icon__block:nth-of-type(8) {
+  display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   grid-column: 11 / span 3;
+   padding-right: 10px;
+
+}
+.help-icon__block:nth-of-type(9) {
+  display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   grid-column: 15 / span 4;
+   padding-right: 7px;
+
+}
+
+.help-icon__block-title {
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: #545454;
+  text-align: center;
+  margin-top: 30px;
+}
+.additional{
+  background: #F6F6F6;
+}
+.additional-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 101px;
+  padding-top: 81px;
+}
+.additional-img{
+  padding-right: 29px;
+  margin-top: -9px;
+}
+.additiona-content{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.additional-content__title{
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #545454;
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+.additional-content__subtitle{
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 110%;
+  letter-spacing: 0.06em;
+  color: #545454;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.additional-content__card-info{
+  display: flex;
+  align-items: center;
+  background: #F1CDB3;
+  border-radius: 9px;
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: #545454;
+  padding: 10px 10px;
+  margin-bottom: 20px;
+}
+.additional-content__card-info__icon{
+  padding-left: 7px;
+  margin-right: 15px;
+}
+
+.additional-content__describtion{
+  font-family: Arial;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+  color: #B2B2B2;
+  max-width: 380px;
 }
