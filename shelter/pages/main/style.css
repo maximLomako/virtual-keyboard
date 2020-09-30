@@ -152,7 +152,8 @@ body {
   border-radius: 7.142rem;
   border: 0.142rem solid #F1CDB3;
 }
-.btn:hover{
+
+.btn:hover {
   background: #FDDCC4;
   border: 0.142rem solid #FDDCC4;
   border-radius: 7.142rem;
@@ -243,7 +244,7 @@ body {
   padding: 1.5rem 1.214rem;
 }
 
-.slider-arrow:hover{
+.slider-arrow:hover {
   border: 0.142rem solid #FDDCC4;
   background: #FDDCC4;
   cursor: pointer;
@@ -261,16 +262,18 @@ body {
   flex-direction: column;
   align-items: center;
   background-color: #FAFAFA;
+  /* background-color: red; */
   border-radius: 0.642rem;
-}
-.slider__card:hover{
-  background-color: FFFFFF;
-  background: #FFFFFF;
-  cursor: pointer;
 }
 
 .slider__card__img {
-  padding: 2.142rem 2.5rem;
+  margin-bottom: 31px;
+}
+
+.slider__card:hover {
+  background-color: FFFFFF;
+  background: #FFFFFF;
+  cursor: pointer;
 }
 
 .slider__card__title {
@@ -348,7 +351,8 @@ body {
   align-items: center;
   justify-content: center;
   grid-column: 9 / span 4;
-  padding-right: 1.714rem;;
+  padding-right: 1.714rem;
+  ;
 }
 
 .help-icon__block:nth-of-type(4) {
@@ -456,7 +460,7 @@ body {
   color: #545454;
   max-width: 21.428rem;
   margin-bottom: 1.142rem;
-  
+
 }
 
 .additional-content__subtitle {
@@ -487,14 +491,17 @@ body {
   margin-bottom: 1.642rem;
   width: 24.928rem;
 }
-.additional-content__card-info:hover{
+
+.additional-content__card-info:hover {
   cursor: pointer;
   background: #FDDCC4;
 }
-.additional-content__card-info__number{
+
+.additional-content__card-info__number {
   text-decoration: none;
   color: #545454;
 }
+
 .additional-content__card-info__icon {
   padding-left: 0.5rem;
   margin-right: 1.0714rem;
@@ -520,7 +527,7 @@ body {
   display: flex;
   justify-content: space-between;
   width: 85.714rem;
-  padding-top: 2.785rem;
+  padding-top: 2.385rem;
 }
 
 .footer__contacts {
@@ -540,7 +547,8 @@ body {
   letter-spacing: 0.06em;
   color: #FFFFFF;
   margin-bottom: 2.642rem;
-  padding-top: 1.714rem;;
+  padding-top: 1.714rem;
+  ;
 }
 
 .footer-address__title {
@@ -560,7 +568,8 @@ body {
   display: inline-block;
   text-decoration: none;
 }
-.footer-contact__link--margin{
+
+.footer-contact__link--margin {
   margin-left: 1.428rem;
 }
 
