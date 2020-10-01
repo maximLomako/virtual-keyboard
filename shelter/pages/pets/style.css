@@ -118,7 +118,7 @@ body {
   letter-spacing: 0.06em;
   color: #545454;
   max-width: 28.571rem;
-  margin-bottom: 4.214rem;
+  margin-bottom: 31px;
 }
 
 .our-friends__slider {
@@ -128,36 +128,11 @@ body {
   width: 85.714rem;
   margin-top: 25px;
 }
-.our-friend__btn-block{
-  display: flex;
-}
-.our-friend__btn-block__button {
-  margin-top: -4.285rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 0.142rem solid #F1CDB3;
-  border-radius: 50%;
-  padding: 1.5rem 1.214rem;
-  margin-right: 10px;
-  font-family: Georgia;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 115%;
-  letter-spacing: 0.06em;
-  color: #292929;
-}
 
-.our-friend__btn-block__button:hover {
-  border: 0.142rem solid #FDDCC4;
-  background: #FDDCC4;
-  cursor: pointer;
-}
 
 .slider__cards {
   display: flex;
-  margin-bottom: 4.285rem;
+  margin-bottom: 31px;
   justify-content: space-between;
   width: 70.714rem;
   flex-wrap: wrap;
@@ -228,6 +203,48 @@ body {
   padding: 0.928rem 3.071rem;
 }
 
+.our-friend__btn-block {
+  display: flex;
+}
+
+.our-friend__btn-block__button {
+  border: 2px solid #F1CDB3;
+  box-sizing: border-box;
+  border-radius: 100px;
+  padding: 12px 10px;
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 115%;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.our-friend__btn-block__button:hover {
+  border: 2px solid #F1CDB3;
+  background: #F1CDB3;
+  cursor: pointer;
+}
+
+.our-friend__btn-block__button--active {
+  border: 2px solid #F1CDB3;
+  background: #F1CDB3;
+}
+
+.our-friend__btn-block__button--disable {
+  border: 2px solid #CDCDCD;
+  pointer-events: none;
+}
+
+.our-friend__btn-block__button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 27px;
+  height: 23px;
+}
+
 .footer {
   background: url('/assets/images/noise_transparent@2x.png'),
     radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%),
@@ -259,7 +276,7 @@ body {
   color: #FFFFFF;
   margin-bottom: 2.642rem;
   padding-top: 1.714rem;
-  ;
+  max-width: 280px;
 }
 
 .footer-address__title {
@@ -298,3 +315,5 @@ body {
 .footer-address__element {
   margin-bottom: 2.342rem;
 }
+
+
