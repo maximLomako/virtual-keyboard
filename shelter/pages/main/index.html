@@ -11,12 +11,15 @@
 <body>
   <h1 class="visuallyhidden">Cozy House</h1>
   <header class="header">
-    <div class="container">
+    <div class="container header-container">
       <div class="header-content">
         <div class="header__logo">
           <h3 class="header__title">Cozy House</h3>
           <span class="header__subtitle">Shelter for pets in Boston</span>
         </div>
+          <img  class="header-burger" src="../../assets/icons/Burger.svg" alt="burger" >
+        
+        
 
         <nav class="nav">
           <ul class="nav-block">
@@ -40,7 +43,9 @@
             more
             than anybody else in the world, you will see!
           </p>
-          <button class="btn not-only__btn">Make a friend</button>
+          <div class="not-only__btn__wrapper">
+            <button class="btn not-only__btn">Make a friend</button>
+          </div>
         </div>
         <img src="../../assets/images/start-screen-puppy.png" alt="not-only__dog" class="not-only__img">
       </div>
@@ -68,7 +73,7 @@
       <div class="our-friends__wrapper">
         <h3 class="title our-friend__title">Our friends who<br> are looking for a house</h3>
         <div class="our-friends__slider">
-          <div class="slider-arrow">
+          <div class="slider-arrow slide-arrow--left">
             <img src="../../assets/icons/Arrow-prev.svg" alt="slider-arrow-prev" class="slider-arrow__img">
           </div>
           <div class="slider__cards">
@@ -79,20 +84,20 @@
               <button class="btn slider__card__button">Learn more</button>
             </div>
 
-            <div class="slider__card">
+            <!-- <div class="slider__card">
               <img src="../../assets/images/jenifer.png" alt="slider__card__img" class="slider__card__img">
               <span class="slider__card__title">Jennifer</span>
               <button class="btn slider__card__button">Learn more</button>
-            </div>
+            </div> -->
 
-            <div class="slider__card">
+            <!-- <div class="slider__card">
               <img src="../../assets/images/woody.png" alt="slider__card__img" class="slider__card__img">
               <span class="slider__card__title">Woody</span>
               <button class="btn slider__card__button">Learn more</button>
-            </div>
+            </div> -->
 
           </div>
-          <div class="slider-arrow">
+          <div class="slider-arrow slide-arrow--right">
             <img src="../../assets/icons/Arrow-next.svg" alt="slider-arrow-next" class="slider-arrow__img">
           </div>
         </div>
@@ -177,7 +182,8 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-wrapper">
-        <address class="footer-contacts">
+        <div class="footer__content">
+          <address class="footer-contacts">
           <h3 class="title footer-title">For questions and suggestions</h3>
           <div class="element footer-contacts__element">
             <a href="mailto:email@shelter.com" class="footer-contacts__icon">
@@ -185,7 +191,7 @@
             </a>
             <a href="mailto:email@shelter.com" class="footer-contact__link">email@shelter.com</a>
           </div>
-          <div class="element footer-contacts__element">
+          <div class="element footer-contacts__element footer-contacts__element--padding">
             <a href="tel:+13 674 567 75 54" class="footer-contact__icon">
               <img src="../../assets/icons/phone.svg" alt="phone-icon" class="footer-contacts__link">
             </a>
@@ -204,7 +210,7 @@
             <a href="https://www.google.ru/maps/place/EPAM+Systems/@53.9164147,27.5560248,13z/data=!4m8!1m2!2m1!1z0LXQv9Cw0Lwg0LzQuNC90YHQug!3m4!1s0x46dbc59f153c8ec9:0x90003157bb96ded2!8m2!3d53.9070771!4d27.4839148?hl=en"
               target="_blank" class="footer-contact__link">1 Central Street, Boston (entrance from the store)</a>
           </div>
-          <div class="element footer-contacts__element">
+          <div class="element footer-contacts__element footer-address__element">
             <a href="https://www.google.ru/maps/place/EPAM+Systems/@53.9164147,27.5560248,13z/data=!4m8!1m2!2m1!1z0LXQv9Cw0Lwg0LzQuNC90YHQug!3m4!1s0x46dbc59f153c8ec9:0x90003157bb96ded2!8m2!3d53.9070771!4d27.4839148?hl=en"
               target="_blank" class="footer-contacts__icon">
               <img src="../../assets/icons/icon-marker.svg" alt="marker-icon">
@@ -214,7 +220,8 @@
               target="_blank" class="footer-contact__link">18 South Park, London </a>
           </div>
         </address>
-        <img src="../../assets/images/footer-puppy.png" alt="footer-puppy">
+        </div>
+        <img src="../../assets/images/footer-puppy.png" class="footer-img" alt="footer-puppy">
       </div>
     </div>
   </footer>
