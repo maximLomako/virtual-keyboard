@@ -598,7 +598,7 @@ body {
   margin-bottom: 2.342rem;
 }
 
-.footer-contacts{
+.footer-contacts {
   margin-right: 76px;
 }
 
@@ -788,6 +788,7 @@ body {
     justify-content: space-around;
     padding-left: 41px;
     margin-bottom: 26px;
+  
   }
 
   .footer-address {
@@ -802,7 +803,9 @@ body {
 
   .footer-contacts {
     width: 280px;
+    margin-right: 0px;
   }
+
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
@@ -814,6 +817,10 @@ body {
     padding-top: 29px;
     padding-left: 9px;
     width: 266px;
+  }
+
+  .header-burger {
+    display: inline-block;
   }
 
   .nav {
@@ -1125,4 +1132,13 @@ body {
     height: 269px;
     margin: 0 auto;
   }
+
+  .footer__content {
+    flex-direction: column;
+  }
+
+  .footer-contacts {
+    margin-right: 0px;
+  }
+
 }
