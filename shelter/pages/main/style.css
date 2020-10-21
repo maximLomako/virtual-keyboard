@@ -788,7 +788,7 @@ body {
     justify-content: space-around;
     padding-left: 41px;
     margin-bottom: 26px;
-  
+
   }
 
   .footer-address {
@@ -810,17 +810,18 @@ body {
 
 @media (min-width: 320px) and (max-width: 767px) {
   .header {
-    max-width: 320px;
+    max-width: 100%;
   }
 
   .header-content {
     padding-top: 29px;
     padding-left: 9px;
-    width: 266px;
+    width: 100%;
   }
 
   .header-burger {
     display: inline-block;
+    margin-right: 53px;
   }
 
   .nav {
