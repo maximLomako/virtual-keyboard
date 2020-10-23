@@ -1,6 +1,28 @@
 const navElement =
   document.querySelectorAll('.nav__element');
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 navElement.forEach(element => {
   element.addEventListener('mouseover', () => {
     navElement[1].classList.remove('nav__element--active');

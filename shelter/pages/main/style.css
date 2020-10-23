@@ -93,9 +93,10 @@ body {
   color: #CDCDCD;
   list-style: none;
   margin-left: 2.58rem;
-  cursor: pointer;
   border-bottom: 0.15rem solid rgba(0, 0, 0, 0);
+  text-decoration: none;
 }
+
 
 .nav__element--active {
   color: #FAFAFA;
@@ -704,9 +705,10 @@ body {
   width: 1em;
   margin-left: -1em;
 }
-.burger-menu{
-  display: none
-}
+
+ .burger-menu {
+   display: none;
+ }
 
 
 
@@ -1020,7 +1022,8 @@ body {
     width: 1em;
     margin-left: -1em;
   }
-  .burger-menu {
+
+  .burger-menu{
     display: none;
   }
 
@@ -1038,6 +1041,11 @@ body {
   }
 
   .header-burger {
+    display: inline-block;
+    margin-right: 53px;
+  }
+
+  .header-burger--inside {
     display: inline-block;
     margin-right: 53px;
   }
@@ -1469,18 +1477,45 @@ body {
     margin-left: -1em;
   }
 
+  /* burger */
+
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
   .burger-menu {
+    display: block;
+    background: rgba(41, 41, 41, 0.6);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(100%);
+    transition: transform 0.5s ease-in;
+  }
+
+  .burger-menu--active {
+    display: block;
+    transform: translateX(0%);
+  }
+
+  .burger-wrapper {
     background: #292929;
     width: 320px;
     height: 100vh;
     position: absolute;
     top: 0;
     right: 0;
-    display: none
   }
-  .burger-menu-content{
+
+
+  .burger-menu-content {
     margin-bottom: 158px;
+
   }
+
   .burger-nav {
     font-family: Arial;
     font-style: normal;
@@ -1490,21 +1525,89 @@ body {
     color: #CDCDCD;
   }
 
-  .burger-nav-block{
+  .burger-nav-block {
     display: flex;
     flex-direction: column;
     align-items: center;
     list-style: none;
   }
 
-  .burger-nav__element{
+  .burger-nav__element {
     margin-bottom: 40px;
   }
-   .burger-nav__element--active {
-     margin-bottom: 40px;
-     color: #FFFFFF;
-     border-bottom: 3px solid #F1CDB3;
-   }
 
+  .burger-nav__element--active {
+    margin-bottom: 40px;
+    color: #FFFFFF;
+    border-bottom: 3px solid #F1CDB3;
+  }
 
+  @keyframes logoFade {
+    from {
+      opacity: 1;
+      transform: translate(0px)
+    }
+
+    to {
+      opacity: 0;
+      transform: translate(-50px);
+    }
+  }
+
+  @keyframes logoVisible {
+    from {
+      opacity: 0;
+      transform: translate(-50px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate(0);
+    }
+  }
+
+  @keyframes rotateButton {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(90deg);
+    }
+  }
+
+  @keyframes rotateForwardButton {
+    from {
+      transform: rotate(90deg);
+    }
+
+    to {
+      transform: rotate(0deg);
+    }
+  }
+
+    @keyframes rotateButtonInside {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(-90deg);
+      }
+    }
+
+    @keyframes rotateForwardButtonInside {
+      from {
+        transform: rotate(-90deg);
+      }
+
+      to {
+        transform: rotate(0deg);
+      }
+    }
+
+    .burger-nav__element{
+      text-decoration: none; 
+      color: #CDCDCD;
+    }
 }
