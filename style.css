@@ -12,7 +12,8 @@ body {
   justify-content: center;
   text-align: center;
   height: 100vh;
-  color: black;
+  /* color: black; */
+  color: white;
 }
 
 #time {
@@ -27,10 +28,20 @@ body {
 h1 {
   margin-bottom: 3rem;
 }
+#name {
+  display: inline-block;
+  width: 200px;
+}
 
 h2 {
+
   margin-bottom: 0.5rem;
   opacity: 0.6;
+}
+
+#focus {
+  display: inline-block;
+  width: 200px;
 }
 
 @media(max-width: 700px) {
