@@ -1,6 +1,7 @@
 const time = document.getElementById('time'),
   fullDate = document.getElementById('date'),
   greeting = document.getElementById('greeting'),
+  btn = document.getElementById('btn'),
   name = document.getElementById('name'),
   focus = document.getElementById('focus');
 
@@ -22,19 +23,25 @@ function showTime() {
   }
 }
 
-function setBgGreet() {
+function setBgGreet(res, slideIndex) {
     let today = new Date(),
     hour = today.getHours();
 
-    if (hour < 12) {
-        document.body.style.backgroundImage = "url('./images/morning/01.jpg')";
-        greeting.textContent='Good Morning';
-    } else if (hour> 18) {
-      document.body.style.backgroundImage = "url('./images/evening/01.jpg')"
-      greeting.textContent='Good Afternoon';
+    if (hour > 6 && hour < 12) {
+        document.body.style.backgroundImage = `url('./images/morning/${res[slideIndex]===undefined ? '07' : res[slideIndex]}.jpg')`;
+        greeting.textContent='Good Morning,';
+        document.body.style.color='black';
+    } else if (hour > 12 && hour < 18) {
+      document.body.style.backgroundImage = `url('./images/day/${res[slideIndex]===undefined ? '07' : res[slideIndex]}.jpg')`;
+      greeting.textContent='Good Afternoon,';
+      document.body.style.color='black';
+    } else if (hour > 18 && hour < 24) {
+      document.body.style.backgroundImage = `url('./images/evening/${res[slideIndex]===undefined ? '07' : res[slideIndex]}.jpg')`;
+      greeting.textContent='Good Evening,';
+      document.body.style.color='white';
     } else {
-      document.body.style.backgroundImage = "url('./images/night/01.jpg')"
-      greeting.textContent='Good Evening';
+      document.body.style.backgroundImage = `url('./images/night/${res[slideIndex]===undefined ? '07' : res[slideIndex]}.jpg')`;
+      greeting.textContent='Good Night,';
       document.body.style.color='white';
     }
   }
@@ -119,9 +126,44 @@ function showDate() {
 
 }
 
+
+//changeImg
+    const randomNumGenerator = () => {
+  let res = [];
+  for (let i = 0; i < 20; i++) {
+    res[i] = (Math.floor(Math.random() * (19 - 0 + 1)) + 1);
+  }
+   return res = res.map(el => el < 10 ? ('0'+el) : el ) 
+  }
+let res = randomNumGenerator();
+console.log(res);
+
+let slideIndex = 0
+const showSlides = () => {    
+  if (slideIndex < 20) {
+     slideIndex++
+  } else {
+    slideIndex = 0
+  }
+}
+setInterval(showSlides, 359999);
+
+btn.addEventListener('click', () => {
+
+  showSlides();
+  setBgGreet(res,slideIndex);
+})
+
+
+
+
+
+
 // Run
 showTime();
-setBgGreet();
+setBgGreet(res,slideIndex);
+setInterval(()=>{setBgGreet(res,slideIndex)}, 3600000);
 showDate();
 getName();
 getFocus();
+
