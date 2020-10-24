@@ -9,7 +9,7 @@ const time = document.getElementById('time'),
 //show time
 function showTime() {
   let today = new Date(),
-  // let today = new Date (2020, 10, 11 , 01 , 10, 30);
+  //  let today = new Date (2020, 10, 11 , 17 , 59, 00);
   hour = today.getHours(),
   min = today.getMinutes(),
   sec = today.getSeconds();
@@ -27,19 +27,19 @@ function setBgGreet(res, slideIndex) {
     let today = new Date(),
     hour = today.getHours();
 
-    if (hour > 6 && hour < 12) {
+    if (hour >= 6 && hour < 12) {
         document.body.style.backgroundImage = `url('./images/morning/${res[slideIndex]}.jpg')`;
         greeting.textContent='Good Morning,';
         document.body.style.color='black';
-    } else if (hour > 12 && hour < 18) {
-      document.body.style.backgroundImage = `url('./images/day/${res[slideIndex]}.jpg')`;
+    } else if (hour >= 12 && hour < 18) {
+      document.body.style.backgroundImage = `url('./images/afternoon/${res[slideIndex]}.jpg')`;
       greeting.textContent='Good Afternoon,';
       document.body.style.color='black';
-    } else if (hour > 18 && hour < 24) {
+    } else if (hour >= 18 && hour < 24) {
       document.body.style.backgroundImage = `url('./images/evening/${res[slideIndex]}.jpg')`;
       greeting.textContent='Good Evening,';
       document.body.style.color='white';
-    } else {
+    } else if (hour >=0 && hour < 6) {
       document.body.style.backgroundImage = `url('./images/night/${res[slideIndex]}.jpg')`;
       greeting.textContent='Good Night,';
       document.body.style.color='white';
@@ -142,29 +142,44 @@ let res = randomNumGenerator();
 
 let slideIndex = 0
 const showSlides = () => {    
-  if (slideIndex < 20) {
+  if (slideIndex < 19) {
      slideIndex++
   } else {
     slideIndex = 0
   }
 }
-setInterval(showSlides, 359999);
+setInterval(showSlides, 3590000);
 
-btn.addEventListener('click', () => {
-
-  showSlides();
-  setBgGreet(res,slideIndex);
-})
-
-
-
-
-
-
-// Run
 showTime();
 setBgGreet(res,slideIndex);
 setInterval(()=>{setBgGreet(res,slideIndex)}, 3600000);
 showDate();
 getName();
 getFocus();
+
+  const allDayPart = ['morning', 'afternoon', 'evening', 'night'];
+function getPartOfDay() {
+
+  let nowDayPart = greeting.textContent.split(' ')[1];
+  nowDayPart = nowDayPart.substring(0, nowDayPart.length - 1).toLowerCase();
+  let resOfSearch = allDayPart.findIndex(el => el === nowDayPart);
+  return resOfSearch
+}
+
+let indexOfArray = getPartOfDay();
+let counter = 0;
+
+btn.addEventListener('click', () => {
+  counter++
+   if (counter % 20 === 0) {
+    counter = 0
+    if (indexOfArray < 3) {
+      indexOfArray++
+    } else {
+      indexOfArray = 0
+    }
+  }
+
+  document.body.style.backgroundImage = `url('./images/${allDayPart[indexOfArray]}/${res[slideIndex]}.jpg')`;
+  showSlides();
+})
