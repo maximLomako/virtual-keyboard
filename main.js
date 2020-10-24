@@ -169,7 +169,8 @@ function getPartOfDay() {
 let indexOfArray = getPartOfDay();
 let counter = 0;
 
-btn.addEventListener('click', () => {
+function delayClickButton() {
+setTimeout(  function changeBckgImage() {
   counter++
    if (counter % 20 === 0) {
     counter = 0
@@ -182,4 +183,7 @@ btn.addEventListener('click', () => {
 
   document.body.style.backgroundImage = `url('./images/${allDayPart[indexOfArray]}/${res[slideIndex]}.jpg')`;
   showSlides();
-})
+}, 500)
+}
+
+btn.addEventListener('click', delayClickButton);
