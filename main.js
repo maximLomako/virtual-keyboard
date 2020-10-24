@@ -28,19 +28,19 @@ function setBgGreet(res, slideIndex) {
     hour = today.getHours();
 
     if (hour > 6 && hour < 12) {
-        document.body.style.backgroundImage = `url('./images/morning/${res[slideIndex]===undefined ? '07' : res[slideIndex]}.jpg')`;
+        document.body.style.backgroundImage = `url('./images/morning/${res[slideIndex]}.jpg')`;
         greeting.textContent='Good Morning,';
         document.body.style.color='black';
     } else if (hour > 12 && hour < 18) {
-      document.body.style.backgroundImage = `url('./images/day/${res[slideIndex]===undefined ? '07' : res[slideIndex]}.jpg')`;
+      document.body.style.backgroundImage = `url('./images/day/${res[slideIndex]}.jpg')`;
       greeting.textContent='Good Afternoon,';
       document.body.style.color='black';
     } else if (hour > 18 && hour < 24) {
-      document.body.style.backgroundImage = `url('./images/evening/${res[slideIndex]===undefined ? '07' : res[slideIndex]}.jpg')`;
+      document.body.style.backgroundImage = `url('./images/evening/${res[slideIndex]}.jpg')`;
       greeting.textContent='Good Evening,';
       document.body.style.color='white';
     } else {
-      document.body.style.backgroundImage = `url('./images/night/${res[slideIndex]===undefined ? '07' : res[slideIndex]}.jpg')`;
+      document.body.style.backgroundImage = `url('./images/night/${res[slideIndex]}.jpg')`;
       greeting.textContent='Good Night,';
       document.body.style.color='white';
     }
@@ -131,12 +131,14 @@ function showDate() {
     const randomNumGenerator = () => {
   let res = [];
   for (let i = 0; i < 20; i++) {
-    res[i] = (Math.floor(Math.random() * (19 - 0 + 1)) + 1);
+    res[i] = i+1
+     res.sort(() => Math.random() - 0.5);
+   
   }
    return res = res.map(el => el < 10 ? ('0'+el) : el ) 
   }
+
 let res = randomNumGenerator();
-console.log(res);
 
 let slideIndex = 0
 const showSlides = () => {    
@@ -166,4 +168,3 @@ setInterval(()=>{setBgGreet(res,slideIndex)}, 3600000);
 showDate();
 getName();
 getFocus();
-
