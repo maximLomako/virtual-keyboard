@@ -311,12 +311,14 @@ const buttonWeather = document.querySelector('.button-weather');
 const close = document.querySelector('.close');
 const active = document.querySelector('.active');
 const weather = document.querySelector('.weather');
+const html = document.querySelector('html');
 
 
 buttonWeather.addEventListener('click', () => {
   
   weather.style.animation = `animateBottom 0.5s ease forwards 0.5s`
     weather.classList.add('active');
+
 
 })
 
