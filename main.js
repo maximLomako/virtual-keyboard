@@ -28,19 +28,19 @@ function setBgGreet(res, slideIndex) {
     hour = today.getHours();
 
     if (hour >= 6 && hour < 12) {
-        document.body.style.backgroundImage = `url('./images/morning/${res[slideIndex]}.jpg')`;
+        document.body.style.backgroundImage = `url('./assets/images/morning/${res[slideIndex]}.jpg')`;
         greeting.textContent='Good Morning,';
         document.body.style.color='black';
     } else if (hour >= 12 && hour < 18) {
-      document.body.style.backgroundImage = `url('./images/afternoon/${res[slideIndex]}.jpg')`;
+      document.body.style.backgroundImage = `url('./assets/images/afternoon/${res[slideIndex]}.jpg')`;
       greeting.textContent='Good Afternoon,';
       document.body.style.color='black';
     } else if (hour >= 18 && hour < 24) {
-      document.body.style.backgroundImage = `url('./images/evening/${res[slideIndex]}.jpg')`;
+      document.body.style.backgroundImage = `url('./assets/images/evening/${res[slideIndex]}.jpg')`;
       greeting.textContent='Good Evening,';
       document.body.style.color='white';
     } else if (hour >=0 && hour < 6) {
-      document.body.style.backgroundImage = `url('./images/night/${res[slideIndex]}.jpg')`;
+      document.body.style.backgroundImage = `url('./assets/images/night/${res[slideIndex]}.jpg')`;
       greeting.textContent='Good Night,';
       document.body.style.color='white';
     }
@@ -156,6 +156,7 @@ setInterval(()=>{setBgGreet(res,slideIndex)}, 3600000);
 showDate();
 getName();
 getFocus();
+showSlides();
 
   const allDayPart = ['morning', 'afternoon', 'evening', 'night'];
 function getPartOfDay() {
@@ -169,8 +170,7 @@ function getPartOfDay() {
 let indexOfArray = getPartOfDay();
 let counter = 0;
 
-function delayClickButton() {
-setTimeout(  function changeBckgImage() {
+function changeBckgImage() {
   counter++
    if (counter % 20 === 0) {
     counter = 0
@@ -181,9 +181,126 @@ setTimeout(  function changeBckgImage() {
     }
   }
 
-  document.body.style.backgroundImage = `url('./images/${allDayPart[indexOfArray]}/${res[slideIndex]}.jpg')`;
-  showSlides();
-}, 500)
+function checkTextColor() {
+    if (indexOfArray === 0 || indexOfArray === 1) {
+    document.body.style.color='black';
+  }
+
+  if (indexOfArray === 2 || indexOfArray === 3) {
+    document.body.style.color='white';
+  }
+}
+checkTextColor();
+
+  btn.disabled = true;
+  setTimeout(function() { btn.disabled = false }, 2000);
+
+let img = document.createElement('img');
+img.src = `./assets/images/${allDayPart[indexOfArray]}/${res[slideIndex]}.jpg`
+document.head.append(img);
+img.onload = function(){
+  document.body.style.backgroundImage = `url(${img.src})`;
 }
 
-btn.addEventListener('click', delayClickButton);
+  showSlides();
+}
+btn.addEventListener('click', changeBckgImage);
+
+// joke
+
+const blockquote = document.querySelector('.setup');
+const figcaption = document.querySelector('.punchline');
+const button = document.querySelector('.btn');
+
+
+async function getQuote() {  
+  const url = `https://official-joke-api.appspot.com/random_joke`;
+ 
+  const res = await fetch(url).then();
+  const data = await res.json(); 
+  blockquote.textContent =  data.setup;
+  figcaption.textContent =  data.punchline;
+}
+document.addEventListener('DOMContentLoaded', getQuote);
+button.addEventListener('click', getQuote);
+
+
+// weather
+
+const weatherIcon = document.querySelector('.weather-icon');
+const temperature = document.querySelector('.temperature');
+const humidity = document.querySelector('.humidity');
+const windSpeed = document.querySelector('.wind-speed');
+const weatherDescription = document.querySelector('.weather-description');
+const city = document.querySelector('.city');
+const error = document.querySelector('.error');
+
+
+async function getWeather() {
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=en&appid=976ec1d5f68a6a42fe2bd2e6c461df13&units=metric`;
+  const res = await fetch(url);
+  const data = await res.json();
+
+
+  if (data.cod === '404') {
+    city.style.border = '1px solid red';
+    error.style.color='red';
+    error.textContent = `${data.message}`;
+
+  } else {
+      weatherIcon.className = 'weather-icon owf';
+  weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+  temperature.textContent = `${data.main.temp.toFixed(0)}°C`;
+  weatherDescription.textContent = data.weather[0].description;
+  windSpeed.textContent = `${data.wind.speed} m/s`
+  humidity.textContent = `${data.main.humidity}%`
+  error.style.color='white';
+  error.textContent = ``;
+  city.style.border = '1px solid white';
+  }
+
+ 
+
+  
+}
+
+
+
+document.addEventListener('DOMContentLoaded', getWeather);
+
+
+function getCity() {
+    if (localStorage.getItem('city') === null) {
+        city.textContent = 'Minsk';
+    } else {
+        city.textContent = localStorage.getItem('city');
+    }
+}
+
+function setCity(e) {
+    if (e.type === 'keypress') {
+        // Make sure enter is pressed
+        if (e.key === 'Enter' && e.target.innerText !== '') {
+            localStorage.setItem('city', e.target.innerText);
+            city.blur();
+            getWeather();
+        }
+        if (e.key === 'Enter' && e.target.innerText === '') {
+            city.blur();
+            getCity();
+            getWeather();
+        }
+    }else if (e.type === 'click'){
+        e.target.innerText = '';
+        city.focus();
+    } else {
+        getCity();
+        
+    }
+}
+
+ getCity();
+
+ city.addEventListener('keypress', setCity);
+city.addEventListener('blur', setCity);
+city.addEventListener('click', setCity);
