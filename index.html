@@ -9,26 +9,31 @@
   <title>Momemntum</title>
 </head>
 <body>
-  <time id="time"></time>
-  <time id="date">Пятница, 25 сентября</time>
+  <div class="time-wrapper">
+     <time id="time"></time>
+  <time id="date">Friday, 25 September</time>
   <h1>
     <span id="greeting"></span>
     <span id="name" contenteditable="true" ></span>
   </h1>
 
-  <h2>What Is Your Focus For Today?</h2>
+  <h2 class="focus-title">What Is Your Focus For Today?</h2>
   <h2 id="focus" contenteditable="true"></h2>
 
   <button id="btn">Next Picture</button>
+  </div>
+ 
 
-<div class="jokes">
-  <p class="setup"></p>
+ <div class="jokes">
+   <div class="speech-bubble">
+     <p class="setup"></p>
   <p class="punchline"></p>
+  <button class="btn">Change</button>
+   </div>
 </div>
-
-<button class="btn">Change</button>
-
-<div class="weather-wrapper">
+<div class="button-weather">Check Weather</div>
+<div class="weather">
+  <div class="weather-wrapper">
     <div class="city" contenteditable="true"></div>
     <div class="error"></div>
      <i style="color: aliceblue;" class="weather-icon owf"></i>
@@ -36,8 +41,10 @@
     <div class="wind-speed"></div>
     <div class="humidity"></div>
     <div class="weather-description"></div>
+    <div class="close">close</div>
 </div>
-  
+</div>
+
   <script defer src="./main.js"></script>
 </body>
 </html>

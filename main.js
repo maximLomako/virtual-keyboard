@@ -220,6 +220,7 @@ async function getQuote() {
   const data = await res.json(); 
   blockquote.textContent =  data.setup;
   figcaption.textContent =  data.punchline;
+
 }
 document.addEventListener('DOMContentLoaded', getQuote);
 button.addEventListener('click', getQuote);
@@ -304,3 +305,23 @@ function setCity(e) {
  city.addEventListener('keypress', setCity);
 city.addEventListener('blur', setCity);
 city.addEventListener('click', setCity);
+
+
+const buttonWeather = document.querySelector('.button-weather');
+const close = document.querySelector('.close');
+const active = document.querySelector('.active');
+const weather = document.querySelector('.weather');
+
+
+buttonWeather.addEventListener('click', () => {
+  
+  weather.style.animation = `animateBottom 0.5s ease forwards 0.5s`
+    weather.classList.add('active');
+
+})
+
+close.addEventListener('click', () => {
+    setTimeout(()=>{
+    weather.classList.remove('active');
+  }), 2000;
+})
