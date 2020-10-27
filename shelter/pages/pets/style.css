@@ -1029,4 +1029,22 @@ body {
 
 
 
+/* modal */
+.active-modal {
+  display: flex;
+}
 
+.close__button:hover {
+  background: #FDDCC4;
+  transition: 2s;
+}
+
+.close__button__active {
+  background: #FDDCC4;
+  transition: 2s;
+}
+
+.slider__card__active {
+  box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+  transition: 1s;
+}

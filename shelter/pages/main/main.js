@@ -1,4 +1,3 @@
-
 const data = [
     {
     "name": "Katrine",
@@ -88,8 +87,8 @@ const data = [
     "diseases": ["deafness", "blindness"],
     "parasites": ["lice", "fleas"]
   },
-  
 ]
+
 const navElement =
   document.querySelectorAll('.nav__element');
 
