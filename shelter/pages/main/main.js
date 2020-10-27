@@ -293,11 +293,7 @@ slidesWrapper.appendChild(div);
 //           <span class="slider__card__title">${data[1+num].name} </span>
 //               <button class="btn slider__card__button">Learn more</button>
 //               </div>`);
-//   slidesField.insertAdjacentHTML('afterbegin', `<div class="slider__card ">
-//          <img src=${data[2+num].img} class="slider__card__img">
-//           <span class="slider__card__title">${data[2+num].name} </span>
-//               <button class="btn slider__card__button">Learn more</button>
-//               </div>`);
+
 
     
 // })
