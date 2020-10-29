@@ -1,7 +1,3 @@
-window.addEventListener("DOMContentLoaded", function () {
-  Keyboard.init();
-});
-
 
 const btn = document.querySelector('.btn');
 const btn2 = document.querySelector('.btn2');
@@ -41,3 +37,11 @@ btn2.addEventListener('click', () => {
 btn3.addEventListener('click', () => {
   recognition.lang = 'ru-RU';
 })
+
+
+
+  // < textarea class = "use-keyboard-input"
+  // placeholder = "Click here" > < /textarea> <
+  //   div class = "btn" > listen < /div> <
+  //   div class = "btn2" > stop < /div> <
+  //   div class = "btn3" > ChangeLang < /div>

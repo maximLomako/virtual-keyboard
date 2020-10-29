@@ -50,7 +50,9 @@ const Keyboard = {
       "done", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?",
       "space"
     ];
-
+{
+  "backspace", "enter", "caps", "enter", "done", "space", "shift"
+}
     // Creates HTML for an icon
     const createIconHTML = (icon_name) => {
       return `<i class="material-icons">${icon_name}</i>`;
