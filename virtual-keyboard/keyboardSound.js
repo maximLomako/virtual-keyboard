@@ -12,8 +12,7 @@
 
 
 
-//   < div class = "key" > button < /div> <
-//     audio id = "key-sound"
+//   < div class = "key" > button < /div> <audio id = "key-sound"
 //   src = "./assets/sounds/iphoneSound.wav" > < /audio> <
 //     div class = "shift" > shift < /div> <
 //     div class = "capsLock" > CapsLock < /div> <
