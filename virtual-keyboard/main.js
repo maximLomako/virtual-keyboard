@@ -3,7 +3,7 @@ const keyLayoutEng = [
   "tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]",
   "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "enter",
   "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/",
-  "showKeyboard", "voice", "lang", "space", "arrowLeft", "arrowRight"
+  "showKeyboard", "voice", "en", "space", "arrowLeft", "arrowRight"
 ];
 
 const keyLayoutRus = [
@@ -11,13 +11,14 @@ const keyLayoutRus = [
   "tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ",
   "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "enter",
   "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".",
-  "showKeyboard", "voice", "lang", "space", "arrowLeft", "arrowRight"
+  "showKeyboard", "voice", "ru", "space", "arrowLeft", "arrowRight"
 ]
 
 const body = document.querySelector('body'),
   textarea = document.querySelector('textarea');
  let capsLock = false,
-  shift = false;
+  shift = false,
+  lang = false;
 
 const initKeyBoard = () => {
 
@@ -121,7 +122,7 @@ const inputItemFromKeyboard = () => {
   key.forEach((element,i) => element.addEventListener('click', (e) => {
     const target = e.currentTarget;
     if (target === element) {
-      switch (element.getAttribute('dataValue')) {
+      switch (element.getAttribute('dataValue').toLowerCase()) {
         case "backspace":
           textarea.value = textarea.value.slice(0, -1)
           break;
@@ -143,9 +144,12 @@ const inputItemFromKeyboard = () => {
         case "voice":
           textarea.value += ""
           break;
-        case "lang":
+        case "ru":
           textarea.value += ""
           break;
+        case "en":
+        textarea.value += ""
+        break;
         case "arrowleft":
           textarea.value += ""
           break;
@@ -195,22 +199,33 @@ const switchShiftKey = (fakeArr) => {
  })
 }
 
-const checkValueKey = () => {
-  if (capsLock && shift) {
-    textarea.value += element.getAttribute('dataValue').toLowerCase();
-    switchShiftKey(keyItemValue);
-  }
-  if (!capsLock && shift) {
-    textarea.value += element.getAttribute('dataValue').toUpperCase();
-    switchShiftKey(keyItemValue);
-  }
-  if (capsLock && !shift) {
-    textarea.value += element.getAttribute('dataValue').toUpperCase();
-    switchShiftKey(keyMainItemValue);
+const changeLang = () => {
 
-  }
-  if (!capsLock && !shift) {
-    textarea.value += element.getAttribute('dataValue').toLowerCase();
-    switchShiftKey(keyMainItemValue);
-  }
+  const langBtn = !lang ? document.querySelectorAll(("[dataValue='en']"))[0] : document.querySelectorAll(("[dataValue='ru']"))[0];
+  let langValue = document.querySelectorAll(("[dataValue='en']"))[1];
+  let langValueSpan = document.querySelector(("[dataValue='ru']"));
+  console.log(langValueSpan)
+  langBtn.addEventListener('click', (e) => {
+
+    if (e.currentTarget === langBtn) {
+      langBtn.classList.toggle('key--activeAlways');
+      lang = !lang;
+      console.log(lang);
+
+      keyValue.forEach((element, i) => {
+        if (reg.test(keyItemValue[i].getAttribute('datavalue'))) {
+          lang ? element.setAttribute('dataValue', keyItemValue[i].getAttribute('datavalue')) : element.setAttribute('dataValue', keyMainItemValue[i].getAttribute('datavalue'));
+          lang ? langValue.textContent = 'ru' : langValue.textContent = 'en';
+          lang ? langValueSpan.textContent = 'en' : langValueSpan.textContent = 'ru';
+        }
+      })
+    }
+  })
 }
+changeLang();
+
+
+// const keyValue = document.querySelectorAll('.key');
+// const keyMainItemValue = document.querySelectorAll('.key__main-item');
+// let keyItemValue = document.querySelectorAll('.key__item');
+// const reg = /([А-Я, A-Z])/i;
