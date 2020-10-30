@@ -24,7 +24,7 @@ body {
   display: flex;
   justify-content: center;
   position: absolute;
-  transform: translate(200%);
+  /* transform: translate(200%); */
   bottom: 0;
   transition: transform 2s ease-in;
   background: #242444;
@@ -33,13 +33,13 @@ body {
   
 }
 
-.keyboard--active {
+/* .keyboard--active {
   display: flex;
   justify-content: center;
   position: absolute;
   transition: transform 1s ease-in;
   transform: translate(0);
-}
+} */
 
 .keys {
   display: flex;
@@ -78,8 +78,14 @@ body {
 
 .key--active {
   background-color: rgba(237, 85, 59, 0.5);
-  transition: 1.5s;
+  transition: 1s;
 }
+
+.key--activeAlways {
+  background: rgba(150, 222, 218, 0.5);
+  transition: 1s;
+}
+
 
 .key--medium__width {
   border: 1px solid #b2e280;
