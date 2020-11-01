@@ -24,7 +24,7 @@ body {
   display: flex;
   justify-content: center;
   position: absolute;
-  /* transform: translate(200%); */
+  transform: translate(200%);
   bottom: 0;
   transition: transform 2s ease-in;
   background: #242444;
@@ -33,13 +33,13 @@ body {
   
 }
 
-/* .keyboard--active {
+.keyboard--active {
   display: flex;
   justify-content: center;
   position: absolute;
   transition: transform 1s ease-in;
   transform: translate(0);
-} */
+}
 
 .keys {
   display: flex;
@@ -100,4 +100,33 @@ body {
   padding: 20px 200px;
   border-radius: 20px;
   color: #f6d55c;
+}
+
+.onOffSound {
+  flex-grow: 1;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #b2e280;
+  padding: 20px 20px;
+  border-radius: 20px;
+  color: #f6d55c;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  background-color: #004e7c;
+}
+
+.onOffSound--active {
+  background-color: #5c5f58;
+}
+
+@media (max-width: 1100px) {
+  .textarea-wrapper {
+    display: flex;
+    justify-content: center;
+    max-width: 500px;
+  }
 }

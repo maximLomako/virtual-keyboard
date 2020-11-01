@@ -31,6 +31,7 @@ const body = document.querySelector('body'),
   textarea = document.querySelector('textarea');
 let capsLock = false,
   shift = false,
+  sound = true,
   lang = false;
 
 const initKeyBoard = () => {
@@ -138,23 +139,33 @@ const inputItemFromKeyboard = () => {
       switch (element.getAttribute('dataValue').toLowerCase()) {
         case "backspace":
           textarea.value = textarea.value.slice(0, -1)
-          backspace.play();
+           if (sound) {
+            backspace.play();
+           }
           break;
         case "enter":
           textarea.value += "\n"
-          enter.play();
+           if (sound) {
+             enter.play();
+           }
           break;
         case "caps":
           textarea.value += '';
-          caps.play();
+          if (sound) {
+            caps.play();
+          }
           break;
         case "tab":
           textarea.value += '';
-          iphoneSound.play();
+          if (sound) {
+            iphoneSound.play();
+          }
           break;
         case "shift":
           textarea.value += ""
-          langSound.play();
+          if (sound) {
+            langSound.play();
+          }
           break;
         case "space":
           textarea.value += " "
@@ -178,7 +189,9 @@ const inputItemFromKeyboard = () => {
           textarea.value += ""
           break;
         default:
-          !lang ? iphoneSound.play() : langSound.play();
+          if (sound) {
+            !lang ? iphoneSound.play() : langSound.play();
+          }
           if (capsLock && shift) {
             switchShiftKey(keyItemValue);
             textarea.value += element.getAttribute('dataValue').toLowerCase();
@@ -365,6 +378,15 @@ const stopVoiceRec = () => {
 function checkLanguage() {
   recognition.lang = !lang ? 'en-US' : 'ru-RU';
 }
+
+const onOffSoundBtn = document.querySelector('.onOffSound');
+const onOffSoundFunc = () => {
+  sound = !sound
+  onOffSoundBtn.classList.toggle('onOffSound--active')
+  console.log(1)
+}
+
+onOffSoundBtn.addEventListener('click', onOffSoundFunc)
 
 voiceBtn.addEventListener('click', () => {
   voiceStatus <= 0 ? startVoiceRec() : stopVoiceRec();
