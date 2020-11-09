@@ -1,3 +1,4 @@
+const createPage = () => {
   // create elements game field
   const body = document.querySelector('body');
   const container = document.createElement('div');
@@ -5,15 +6,26 @@
   const gearIconDiv = document.createElement('div');
   const gearIconImg = document.createElement('img');
 
+  //create timer and counter
+  const indicators = document.createElement('div');
+  const timer = document.createElement('div');
+  const hours = document.createElement('div');
+  const minutes = document.createElement('div');
+  const seconds = document.createElement('div');
+  const counter = document.createElement('div');
+  const spanTimer = document.createElement('span');
+
   // create elements modal window
   const modal = document.createElement('div');
   const modalDialog = document.createElement('div');
   const modalItems = document.createElement('ul');
-  const modalItem = document.createElement('li');
   const modalItemContent = ['New Game', 'Save Game', 'Change size', 'Best scores'];
   const congratMessage = document.createElement('h2');
   const close = document.createElement('div');
   const closeIcon = document.createElement('img');
+
+
+
 
   //add classes game field
   container.className = 'container';
@@ -21,19 +33,48 @@
   gearIconDiv.className = 'gear';
   gearIconImg.src = './assets/icons/gear.svg'
 
+  // add classes timer and counter
+  indicators.className = 'indicators';
+  timer.className = 'timer';
+  hours.className = 'hours';
+  minutes.className = 'minutes';
+  seconds.className = 'seconds';
+  counter.className = 'counter';
+
   // add classes modal window
   modal.className = 'modal';
   modalDialog.className = 'modal__dialog';
   modalItems.className = 'modal__items';
-  modalItem.className = 'modal__item';
   close.className = 'close';
   closeIcon.src = './assets/icons/close.svg';
+
+
+
 
   //add element to the page game field
   body.prepend(container);
   container.appendChild(field);
-  container.appendChild(gearIconDiv);
+  indicators.appendChild(gearIconDiv);
   gearIconDiv.appendChild(gearIconImg);
+
+  //add element timer and counter
+  container.prepend(indicators);
+  indicators.prepend(timer);
+  timer.appendChild(hours);
+  timer.appendChild(spanTimer);
+  timer.appendChild(minutes);
+  timer.appendChild(spanTimer);
+  timer.appendChild(seconds);
+  indicators.prepend(counter);
+
+  // add content element timer and counter
+  hours.textContent = '24'
+  minutes.textContent = '59'
+  seconds.textContent = '59'
+  spanTimer.textContent = ' : '
+  counter.textContent = '000'
+
+
 
   //add element to the page modal window
   body.appendChild(modal);
@@ -44,10 +85,7 @@
   close.appendChild(closeIcon);
 
 
-
-
-
-
+  let numbers = [...Array(15).keys()].sort(() => Math.random() - 0.5);
   const cellSize = 100;
   const empty = {
     value: 0,
@@ -59,10 +97,6 @@
 
   //init game, create DOM
   function initGame() {
-
-    const numbers = [...Array(15).keys()]
-      .sort(() => Math.random() - 0.5);
-
 
     for (let i = 1; i <= 15; i++) {
 
@@ -82,7 +116,6 @@
       })
 
       field.appendChild(cell)
-
       cell.style.left = `${left * cellSize}px`
       cell.style.top = `${top * cellSize}px`
       cell.addEventListener('click', () => {
@@ -90,6 +123,7 @@
       })
     }
   }
+
   //move cells
   function move(index) {
     const cell = cells[index];
@@ -116,37 +150,72 @@
     })
 
 
+
     if (isFinished) {
       alert('you win!')
     }
+    countMoves();
   }
-  //start new game
-  const newGame = () => {
-    numbers = [...Array(15).keys()]
-      .sort(() => Math.random() - 0.5);
-  }
-  initGame();
 
+  //call functions
+  initGame();
 
   // toogle modal
   const toggleModal = () => {
     modal.classList.toggle('modal__active')
+    gearIconDiv.classList.toggle('active')
   }
 
-  gearIconImg.addEventListener('click',toggleModal);
+  gearIconImg.addEventListener('click', toggleModal);
   close.addEventListener('click', toggleModal);
 
   document.addEventListener('click', (e) => {
     if (e.target === modal) {
       modal.classList.toggle('modal__active')
+      gearIconDiv.classList.toggle('active')
     }
   })
-  
+
   document.addEventListener('keydown', (e) => {
-      if (e.code === 'Escape') {
-        modal.classList.remove('modal__active')
-      }
-    })
+    if (e.code === 'Escape') {
+      modal.classList.remove('modal__active')
+      gearIconDiv.classList.toggle('active')
+    }
+  })
 
 
+  //start new game 
+  modalItems.addEventListener('click', (e) => {
+    const container = document.querySelector('.container');
+    if (e.target.textContent === 'New Game') {
+      modal.classList.toggle('modal__active')
+      gearIconDiv.classList.toggle('active')
+      console.log('start game');
+      container.remove();
+      createPage();
+    }
+  })
 
+  //count moves
+  let counterValue = 0;
+  const countMoves = () => {
+    counterValue = counterValue + 1;
+    if (counterValue < 10) {
+       counter.textContent = '00' + counterValue;
+    } else if (counterValue < 100) {
+      counter.textContent = '0' + counterValue;
+    } else {
+      counter.textContent = counterValue;
+    }   
+  }
+  
+}
+createPage();
+
+
+// const cell = document.querySelectorAll('.cell');
+// const cellValueFirstArr = [];
+// for (let i = 0; i < 15; i++) {
+//   cellValueFirstArr.push(cell[i].textContent)
+// }
+// console.log(cellValueFirstArr)
