@@ -9,11 +9,7 @@ const createPage = () => {
   //create timer and counter
   const indicators = document.createElement('div');
   const timer = document.createElement('div');
-  const hours = document.createElement('div');
-  const minutes = document.createElement('div');
-  const seconds = document.createElement('div');
   const counter = document.createElement('div');
-  const spanTimer = document.createElement('span');
 
   // create elements modal window
   const modal = document.createElement('div');
@@ -36,9 +32,6 @@ const createPage = () => {
   // add classes timer and counter
   indicators.className = 'indicators';
   timer.className = 'timer';
-  hours.className = 'hours';
-  minutes.className = 'minutes';
-  seconds.className = 'seconds';
   counter.className = 'counter';
 
   // add classes modal window
@@ -60,18 +53,9 @@ const createPage = () => {
   //add element timer and counter
   container.prepend(indicators);
   indicators.prepend(timer);
-  timer.appendChild(hours);
-  timer.appendChild(spanTimer);
-  timer.appendChild(minutes);
-  timer.appendChild(spanTimer);
-  timer.appendChild(seconds);
   indicators.prepend(counter);
 
   // add content element timer and counter
-  hours.textContent = '24'
-  minutes.textContent = '59'
-  seconds.textContent = '59'
-  spanTimer.textContent = ' : '
   counter.textContent = '000'
 
 
@@ -201,21 +185,42 @@ const createPage = () => {
   const countMoves = () => {
     counterValue = counterValue + 1;
     if (counterValue < 10) {
-       counter.textContent = '00' + counterValue;
+      counter.textContent = '00' + counterValue;
     } else if (counterValue < 100) {
       counter.textContent = '0' + counterValue;
     } else {
       counter.textContent = counterValue;
-    }   
+    }
   }
-  
+
+
+
+  //start timer
+  timer.innerHTML = '00:00:00:00'
+  let milliseconds = 0;
+  const startTimer = () => {
+    if (counterValue > 0) {
+      milliseconds += 10;
+      let dateTimer = new Date(milliseconds);
+      timer.innerHTML =
+        ('0' + dateTimer.getUTCHours()).slice(-2) + ':' +
+        ('0' + dateTimer.getUTCMinutes()).slice(-2) + ':' +
+        ('0' + dateTimer.getUTCSeconds()).slice(-2) + ':' +
+        ('0' + dateTimer.getUTCMilliseconds()).slice(-3, -1);
+    }
+  }
+  setInterval(startTimer, 10)
+ 
+  // stop timer
+  const stopTimer = () => {
+    clearInterval(startTimer);
+  }
+
+  //reset timer
+  const resetTimer = () => {
+    clearInterval(startTimer);
+    timer.innerHTML = '00:00:00:00'
+  }
 }
-createPage();
 
-
-// const cell = document.querySelectorAll('.cell');
-// const cellValueFirstArr = [];
-// for (let i = 0; i < 15; i++) {
-//   cellValueFirstArr.push(cell[i].textContent)
-// }
-// console.log(cellValueFirstArr)
+createPage()
