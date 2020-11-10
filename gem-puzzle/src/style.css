@@ -157,6 +157,7 @@ body {
 .timer {
   display: flex;
   align-items: center;
+  justify-content: center;
   border: 5px solid #E5CAC7;
   font-size: 25px;
   font-family: sans-serif;
@@ -164,7 +165,7 @@ body {
   color: #EDA4C5;
   padding: 5px;
   border-radius: 10px;
-  width: 155px;
+  width: 120px;
 
 }
 
@@ -192,4 +193,10 @@ body {
   padding: 5px;
   border-radius: 10px;
   width: 80px;
+}
+
+@media (max-width: 720px){
+  .cell {
+    font-size: 45px;
+  }
 }

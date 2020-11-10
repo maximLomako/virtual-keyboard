@@ -16,7 +16,7 @@ const createPage = (cellSizeValue = 100, arrItemsValue = 15, columsRowsQuntity =
   const modal = document.createElement('div');
   const modalDialog = document.createElement('div');
   const modalItems = document.createElement('ul');
-  const modalItemContent = ['New Game', 'Save Game', 'Change size', 'Best scores'];
+  const modalItemContent = ['New game', 'Save game', 'Change size', 'Best scores', 'Sound'];
   const close = document.createElement('div');
   const closeIcon = document.createElement('img');
 
@@ -80,6 +80,7 @@ const createPage = (cellSizeValue = 100, arrItemsValue = 15, columsRowsQuntity =
 
 
   let numbers = [...Array(arrItemsValue).keys()].sort(() => Math.random() - 0.5);
+  // let numbers = [...Array(arrItemsValue).keys()]
   const cellSize = cellSizeValue;
   const empty = {
     value: 0,
@@ -143,7 +144,7 @@ const createPage = (cellSizeValue = 100, arrItemsValue = 15, columsRowsQuntity =
     cell.top = emptyTop;
 
     const isFinished = cells.every(cell => {
-      return cell.value === cell.top * 4 + cell.left
+      return cell.value === cell.top * columsRowsQuntity + cell.left
     })
 
 
@@ -154,7 +155,7 @@ const createPage = (cellSizeValue = 100, arrItemsValue = 15, columsRowsQuntity =
       congratModalDialog.innerHTML = `Congrats! You are win with ${counterValue} moves and your time is ${timer.textContent}`
     }
     countMoves();
-    audio.play();
+    audioStatus ? audio.play(): '';
   }
 
   //call functions
@@ -190,8 +191,21 @@ const createPage = (cellSizeValue = 100, arrItemsValue = 15, columsRowsQuntity =
     if (e.target.textContent === 'New Game') {
       modal.classList.toggle('modal__active')
       gearIconDiv.classList.toggle('active')
-      console.log('start game');
-      refreshField();
+      modal.remove();
+      congratModal.remove();
+      
+      if (localStorage.getItem('columsRowsQuntity')) {
+        refreshField(
+          localStorage.getItem('cellSizeValue'),
+          +localStorage.getItem('arrItemsValue'),
+          +localStorage.getItem('columsRowsQuntity'),
+          localStorage.getItem('fieldWidth'),
+          localStorage.getItem('fieldHeight')
+
+        );
+      } else {
+        refreshField();
+      }
     }
   }
 
@@ -220,17 +234,15 @@ const createPage = (cellSizeValue = 100, arrItemsValue = 15, columsRowsQuntity =
 
 
   //start timer
-  timer.innerHTML = '00:00:00:00'
+  timer.innerHTML = '00:00'
   let milliseconds = 0;
   const startTimer = () => {
     if (counterValue > 0) {
       milliseconds += 10;
       let dateTimer = new Date(milliseconds);
       timer.innerHTML =
-        ('0' + dateTimer.getUTCHours()).slice(-2) + ':' +
         ('0' + dateTimer.getUTCMinutes()).slice(-2) + ':' +
-        ('0' + dateTimer.getUTCSeconds()).slice(-2) + ':' +
-        ('0' + dateTimer.getUTCMilliseconds()).slice(-3, -1);
+        ('0' + dateTimer.getUTCSeconds()).slice(-2)
     }
   }
   setInterval(startTimer, 10)
@@ -246,25 +258,6 @@ const createPage = (cellSizeValue = 100, arrItemsValue = 15, columsRowsQuntity =
     timer.innerHTML = '00:00:00:00'
   }
 
-  //save results
-
-  let cellTextValueArr = [];
-
-  const getNumbersValueFromScreen = () => {
-    const cell = document.querySelectorAll('.cell');
-    for (let i = 0; i < cell.length; i++) {
-      cellTextValueArr.push(+cell[i].textContent);
-    }
-  }
-
-  field.addEventListener('click', (e) => {
-    getNumbersValueFromScreen();
-    if (e.currentTarget === field) {
-      console.log(cellTextValueArr)
-      cellTextValueArr = [];
-    }
-
-  })
 
   //change board size
   modal.addEventListener('click', (e) => {
@@ -281,6 +274,8 @@ const createPage = (cellSizeValue = 100, arrItemsValue = 15, columsRowsQuntity =
     changeBoardSize(e.target.textContent);
     if (e.target.classList.contains('field__size')) {
       modal.classList.remove('modal__active');
+      modal.remove();
+      congratModal.remove();
     }
   })
 
@@ -308,8 +303,8 @@ const createPage = (cellSizeValue = 100, arrItemsValue = 15, columsRowsQuntity =
     }
     if (fieldSizeValue === '4x4') {
       arrItemsValue = 15,
-        cellSizeValue = 100,
-        columsRowsQuntity = 4;
+      cellSizeValue = 100,
+      columsRowsQuntity = 4;
       field.style.width = '400px'
       field.style.height = '400px'
       fieldWidth = field.style.width
@@ -405,22 +400,62 @@ const createPage = (cellSizeValue = 100, arrItemsValue = 15, columsRowsQuntity =
     if (e.target === congratModal) {
       congratModal.classList.toggle('modal__active')
       gearIconDiv.classList.toggle('active')
-      refreshField();
+      
+      if (localStorage.getItem('columsRowsQuntity')) {
+        refreshField(
+          localStorage.getItem('cellSizeValue'),
+          +localStorage.getItem('arrItemsValue'),
+          +localStorage.getItem('columsRowsQuntity'),
+          localStorage.getItem('fieldWidth'),
+          localStorage.getItem('fieldHeight')
+
+        );
+      } else {
+        refreshField();
+      }
 
     }
   })
-
-  document.addEventListener('keydown', (e) => {
-    if (e.code === 'Escape') {
-      congratModal.classList.remove('modal__active')
-      gearIconDiv.classList.toggle('active')
-      refreshField();
-    }
-  })
-
 
   //audio
+  let audioStatus = localStorage.getItem('audioStatus') ? localStorage.getItem('audioStatus') == true : true;
+  const modalItemSound = document.querySelectorAll('.modal__item')[4]
+  if (audioStatus === true) {
+    modalItemSound.style.textDecoration = 'none'
+  } else {
+    modalItemSound.style.textDecoration = 'line-through'
+  }
+
   let audio = new Audio('./assets/audio/button.wav');
+  modalDialog.addEventListener('click', (e) => {
+    if (e.target.textContent === 'Sound') {
+      audioStatus = !audioStatus
+      localStorage.setItem('audioStatus', audioStatus)
+      if (audioStatus === true) {
+        modalItemSound.style.textDecoration = 'none'
+      } else {
+        modalItemSound.style.textDecoration = 'line-through'
+      }
+    }
+  })
+
+
+
+   //save results
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
