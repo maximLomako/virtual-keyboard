@@ -1,4 +1,5 @@
-const createPage = () => {
+const createPage = (cellSizeValue = 100, arrItemsValue = 15, columsRowsQuntity = 4, fieldWidth = '400px', fieldHeight = '400px') => {
+
   // create elements game field
   const body = document.querySelector('body');
   const container = document.createElement('div');
@@ -16,10 +17,15 @@ const createPage = () => {
   const modalDialog = document.createElement('div');
   const modalItems = document.createElement('ul');
   const modalItemContent = ['New Game', 'Save Game', 'Change size', 'Best scores'];
-  const congratMessage = document.createElement('h2');
   const close = document.createElement('div');
   const closeIcon = document.createElement('img');
 
+  //congrat modal
+  const congratModal = document.createElement('div');
+  const congratModalDialog = document.createElement('div');
+
+  //field size modal
+  const fieldSizeValue = ['3x3', '4x4', '5x5', '6x6', '7x7', '8x8'];
 
 
 
@@ -41,7 +47,9 @@ const createPage = () => {
   close.className = 'close';
   closeIcon.src = './assets/icons/close.svg';
 
-
+  // add classes congrat modal 
+  congratModal.className = 'congrat-modal';
+  congratModalDialog.className = 'congrat-modal__dialog';
 
 
   //add element to the page game field
@@ -54,11 +62,10 @@ const createPage = () => {
   container.prepend(indicators);
   indicators.prepend(timer);
   indicators.prepend(counter);
+  indicators.style.width = fieldWidth;
 
   // add content element timer and counter
   counter.textContent = '000'
-
-
 
   //add element to the page modal window
   body.appendChild(modal);
@@ -67,10 +74,13 @@ const createPage = () => {
   modalItemContent.forEach(item => modalItems.insertAdjacentHTML('beforeend', `<li class="modal__item">${item}</li>`))
   modalDialog.appendChild(close);
   close.appendChild(closeIcon);
+  //add congrat modal
+  body.appendChild(congratModal);
+  congratModal.appendChild(congratModalDialog);
 
 
-  let numbers = [...Array(15).keys()].sort(() => Math.random() - 0.5);
-  const cellSize = 100;
+  let numbers = [...Array(arrItemsValue).keys()].sort(() => Math.random() - 0.5);
+  const cellSize = cellSizeValue;
   const empty = {
     value: 0,
     top: 0,
@@ -79,18 +89,21 @@ const createPage = () => {
   const cells = [];
   cells.push(empty);
 
+  field.style.width = fieldWidth;
+  field.style.height = fieldHeight;
+
   //init game, create DOM
   function initGame() {
 
-    for (let i = 1; i <= 15; i++) {
+    for (let i = 1; i <= arrItemsValue; i++) {
 
       const cell = document.createElement('div');
       const value = numbers[i - 1] + 1;
       cell.className = 'cell';
       cell.innerHTML = value;
 
-      const left = i % 4
-      const top = (i - left) / 4
+      const left = i % columsRowsQuntity;
+      const top = (i - left) / columsRowsQuntity;
 
       cells.push({
         value: value,
@@ -136,7 +149,9 @@ const createPage = () => {
 
 
     if (isFinished) {
-      alert('you win!')
+      // alert('you win!')
+      congratModal.classList.add('modal__active');
+      congratModalDialog.innerHTML = `Congrats! You are win with ${counterValue} moves and your time is ${timer.textContent}`
     }
     countMoves();
     audio.play();
@@ -170,16 +185,24 @@ const createPage = () => {
 
 
   //start new game 
-  modalItems.addEventListener('click', (e) => {
+  const startGame = (e) => {
     const container = document.querySelector('.container');
     if (e.target.textContent === 'New Game') {
       modal.classList.toggle('modal__active')
       gearIconDiv.classList.toggle('active')
       console.log('start game');
-      container.remove();
-      createPage();
+      refreshField();
     }
-  })
+  }
+
+  //refresh field
+  const refreshField = (cellSizeValue = 100, arrItemsValue = 15, columsRowsQuntity = 4, fieldWidth = '400px', fieldHeight = '400px') => {
+    container.remove();
+    createPage(cellSizeValue, arrItemsValue, columsRowsQuntity, fieldWidth, fieldHeight);
+  }
+
+
+  modalItems.addEventListener('click', startGame);
 
   //count moves
   let counterValue = 0;
@@ -211,7 +234,7 @@ const createPage = () => {
     }
   }
   setInterval(startTimer, 10)
- 
+
   // stop timer
   const stopTimer = () => {
     clearInterval(startTimer);
@@ -223,20 +246,193 @@ const createPage = () => {
     timer.innerHTML = '00:00:00:00'
   }
 
-  
+  //save results
+
+  let cellTextValueArr = [];
+
+  const getNumbersValueFromScreen = () => {
+    const cell = document.querySelectorAll('.cell');
+    for (let i = 0; i < cell.length; i++) {
+      cellTextValueArr.push(+cell[i].textContent);
+    }
+  }
+
+  field.addEventListener('click', (e) => {
+    getNumbersValueFromScreen();
+    if (e.currentTarget === field) {
+      console.log(cellTextValueArr)
+      cellTextValueArr = [];
+    }
+
+  })
+
+  //change board size
+  modal.addEventListener('click', (e) => {
+    if (e.target.textContent === 'Change size') {
+      modalDialog.innerHTML = '';
+      fieldSizeValue.map(s => {
+        modalDialog.insertAdjacentHTML('beforeend',
+          `<span class='field__size'>${s}</span>`)
+      });
+    }
+  });
+
+  modalDialog.addEventListener('click', (e) => {
+    changeBoardSize(e.target.textContent);
+    if (e.target.classList.contains('field__size')) {
+      modal.classList.remove('modal__active');
+    }
+  })
 
 
+  const changeBoardSize = (fieldSizeValue) => {
+    let fieldWidth = '';
+    let fieldHeight = '';
+
+    if (fieldSizeValue === '3x3') {
+      arrItemsValue = 8,
+        cellSizeValue = 100,
+        columsRowsQuntity = 3;
+      field.style.width = '300px'
+      field.style.height = '300px'
+      fieldWidth = field.style.width
+      fieldHeight = field.style.height
+      indicators.style.width = fieldWidth;
+      refreshField(cellSizeValue, arrItemsValue, columsRowsQuntity, fieldWidth, fieldHeight);;
+      localStorage.setItem('cellSizeValue', cellSizeValue);
+      localStorage.setItem('arrItemsValue', arrItemsValue);
+      localStorage.setItem('columsRowsQuntity', columsRowsQuntity);
+      localStorage.setItem('fieldWidth', fieldWidth);
+      localStorage.setItem('fieldHeight', fieldHeight);
+
+    }
+    if (fieldSizeValue === '4x4') {
+      arrItemsValue = 15,
+        cellSizeValue = 100,
+        columsRowsQuntity = 4;
+      field.style.width = '400px'
+      field.style.height = '400px'
+      fieldWidth = field.style.width
+      fieldHeight = field.style.height
+      indicators.style.width = fieldWidth;
+      refreshField(cellSizeValue, arrItemsValue, columsRowsQuntity, fieldWidth, fieldHeight);
+
+      localStorage.setItem('cellSizeValue', cellSizeValue);
+      localStorage.setItem('arrItemsValue', arrItemsValue);
+      localStorage.setItem('columsRowsQuntity', columsRowsQuntity);
+      localStorage.setItem('fieldWidth', fieldWidth);
+      localStorage.setItem('fieldHeight', fieldHeight);
+
+    }
+    if (fieldSizeValue === '5x5') {
+      arrItemsValue = 24,
+        cellSizeValue = 100,
+        columsRowsQuntity = 5;
+      field.style.width = '500px'
+      field.style.height = '500px'
+      fieldWidth = field.style.width
+      fieldHeight = field.style.height
+      indicators.style.width = fieldWidth;
+      refreshField(cellSizeValue, arrItemsValue, columsRowsQuntity, fieldWidth, fieldHeight);
+
+      localStorage.setItem('cellSizeValue', cellSizeValue);
+      localStorage.setItem('arrItemsValue', arrItemsValue);
+      localStorage.setItem('columsRowsQuntity', columsRowsQuntity);
+      localStorage.setItem('fieldWidth', fieldWidth);
+      localStorage.setItem('fieldHeight', fieldHeight);
+
+    }
+    if (fieldSizeValue === '6x6') {
+      arrItemsValue = 35,
+        cellSizeValue = 100,
+        columsRowsQuntity = 6;
+      field.style.width = '600px'
+      field.style.height = '600px'
+      fieldWidth = field.style.width
+      fieldHeight = field.style.height
+      indicators.style.width = fieldWidth;
+      refreshField(cellSizeValue, arrItemsValue, columsRowsQuntity, fieldWidth, fieldHeight);
+
+      localStorage.setItem('cellSizeValue', cellSizeValue);
+      localStorage.setItem('arrItemsValue', arrItemsValue);
+      localStorage.setItem('columsRowsQuntity', columsRowsQuntity);
+      localStorage.setItem('fieldWidth', fieldWidth);
+      localStorage.setItem('fieldHeight', fieldHeight);
+
+    }
+    if (fieldSizeValue === '7x7') {
+      arrItemsValue = 48,
+        cellSizeValue = 100,
+        columsRowsQuntity = 7;
+      field.style.width = '700px'
+      field.style.height = '700px'
+      fieldWidth = field.style.width
+      fieldHeight = field.style.height
+      indicators.style.width = fieldWidth;
+      refreshField(cellSizeValue, arrItemsValue, columsRowsQuntity, fieldWidth, fieldHeight);
+
+      localStorage.setItem('cellSizeValue', cellSizeValue);
+      localStorage.setItem('arrItemsValue', arrItemsValue);
+      localStorage.setItem('columsRowsQuntity', columsRowsQuntity);
+      localStorage.setItem('fieldWidth', fieldWidth);
+      localStorage.setItem('fieldHeight', fieldHeight);
+
+    }
+    if (fieldSizeValue === '8x8') {
+      arrItemsValue = 63,
+        cellSizeValue = 100,
+        columsRowsQuntity = 8;
+      field.style.width = '800px'
+      field.style.height = '800px'
+      fieldWidth = field.style.width
+      fieldHeight = field.style.height
+      indicators.style.width = fieldWidth;
+      refreshField(cellSizeValue, arrItemsValue, columsRowsQuntity, fieldWidth, fieldHeight);
+      localStorage.setItem('columsRowsQuntity', columsRowsQuntity);
+      localStorage.setItem('cellSizeValue', cellSizeValue);
+      localStorage.setItem('arrItemsValue', arrItemsValue);
+      localStorage.setItem('columsRowsQuntity', columsRowsQuntity);
+      localStorage.setItem('fieldWidth', fieldWidth);
+      localStorage.setItem('fieldHeight', fieldHeight);
+
+    }
+  }
 
 
+  //congrats modal toggle
 
+  document.addEventListener('click', (e) => {
+    if (e.target === congratModal) {
+      congratModal.classList.toggle('modal__active')
+      gearIconDiv.classList.toggle('active')
+      refreshField();
 
+    }
+  })
 
-
-
+  document.addEventListener('keydown', (e) => {
+    if (e.code === 'Escape') {
+      congratModal.classList.remove('modal__active')
+      gearIconDiv.classList.toggle('active')
+      refreshField();
+    }
+  })
 
 
   //audio
   let audio = new Audio('./assets/audio/button.wav');
 }
 
-createPage()
+
+if (localStorage.getItem('columsRowsQuntity')) {
+  createPage(
+    localStorage.getItem('cellSizeValue'),
+    +localStorage.getItem('arrItemsValue'),
+    +localStorage.getItem('columsRowsQuntity'),
+    localStorage.getItem('fieldWidth'),
+    localStorage.getItem('fieldHeight')
+
+  );
+} else {
+  createPage();
+}

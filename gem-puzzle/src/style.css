@@ -16,6 +16,7 @@ body {
 .container {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 
@@ -27,6 +28,20 @@ body {
   border-radius: 1px;
   border: 1px solid #62BFF7;
   position: relative;
+}
+
+.field__size{
+  font-size: 16px;
+  letter-spacing: .5px;
+  padding: 10px;
+  font-family: sans-serif;
+  cursor: pointer;
+  color: #294B66;
+}
+
+.field__size:hover {
+  color: #DF5752;
+  transition: color .5s;
 }
 
 .gear img {
@@ -66,14 +81,34 @@ body {
   height: 100%;
   width: 100%;
   border: 5px solid black;
-  
+
 }
 
-.modal__active{
+.congrat-modal {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  border: 5px solid black;
+}
+
+.congrat-modal__dialog {
+  padding: 20px;
+  border: 5px solid #F7D1D1;
+  position: relative;
+  font-family: sans-serif;
+  font-size: 16px;
+  letter-spacing: .5px;
+}
+
+.modal__active {
   display: flex;
   background: rgba(255, 255, 194, 0.9);
   transform: all 1s;
 }
+
 
 .modal__dialog {
   padding: 20px;
@@ -112,13 +147,14 @@ body {
   cursor: pointer;
 }
 
-.indicators{
+.indicators {
   display: flex;
   width: 400px;
   margin-bottom: 10px;
   justify-content: space-between;
 }
-.timer{
+
+.timer {
   display: flex;
   align-items: center;
   border: 5px solid #E5CAC7;
@@ -131,16 +167,20 @@ body {
   width: 155px;
 
 }
-.hours{
+
+.hours {
   padding: 5px;
 }
-.minutes{
+
+.minutes {
   padding: 5px;
 }
-.seconds{
+
+.seconds {
   padding: 5px;
 }
-.counter{
+
+.counter {
   display: flex;
   justify-content: center;
   align-items: center;
