@@ -139,6 +139,7 @@ const createPage = () => {
       alert('you win!')
     }
     countMoves();
+    audio.play();
   }
 
   //call functions
@@ -221,6 +222,21 @@ const createPage = () => {
     clearInterval(startTimer);
     timer.innerHTML = '00:00:00:00'
   }
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  //audio
+  let audio = new Audio('./assets/audio/button.wav');
 }
 
 createPage()
