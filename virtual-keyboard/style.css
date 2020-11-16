@@ -1,0 +1,132 @@
+body {
+  background: url('./assets/images/owl.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  position: relative;
+}
+.textarea-wrapper{
+  display: flex;
+  justify-content: center;
+  max-width: 1100px;
+}
+.use-keyboard-input {
+  display: block;
+  width: 550px;
+  padding: 10px;
+  font-size: 20px;
+  height: calc(40vh);
+  min-height: 200px;
+}
+
+.keyboard{
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  transform: translate(200%);
+  bottom: 0;
+  transition: transform 2s ease-in;
+  background: #242444;
+  padding: 15px;
+  border-radius: 10px;
+  
+}
+
+.keyboard--active {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  transition: transform 1s ease-in;
+  transform: translate(0);
+}
+
+.keys {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1100px;
+}
+
+.key {
+  flex-grow: 1;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #b2e280;
+  padding: 20px 20px;
+  border-radius: 20px;
+  color: #f6d55c;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.key__item {
+  position: absolute;
+  top: 9%;
+  right: 23%;
+  color: #e3d9b0
+}
+
+.key__main-item{
+  font-size: 20px;
+  letter-spacing: 1.5px;
+}
+
+.key--active {
+  background-color: rgba(237, 85, 59, 0.5);
+  transition: 1s;
+}
+
+.key--activeAlways {
+  background: rgba(150, 222, 218, 0.5);
+  transition: 1s;
+}
+
+
+.key--medium__width {
+  border: 1px solid #b2e280;
+  padding: 20px 50px;
+  border-radius: 20px;
+  color: #f6d55c;
+  flex-basis: 9%;
+}
+
+.key--high__width {
+  border: 1px solid #b2e280;
+  padding: 20px 200px;
+  border-radius: 20px;
+  color: #f6d55c;
+}
+
+.onOffSound {
+  flex-grow: 1;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #b2e280;
+  padding: 20px 20px;
+  border-radius: 20px;
+  color: #f6d55c;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  background-color: #004e7c;
+}
+
+.onOffSound--active {
+  background-color: #5c5f58;
+}
+
+@media (max-width: 1100px) {
+  .textarea-wrapper {
+    display: flex;
+    justify-content: center;
+    max-width: 500px;
+  }
+}
