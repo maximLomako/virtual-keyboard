@@ -70,7 +70,7 @@ const createPage = () => {
     );
   }
   createModalWindow();
-//global variable
+  //global variable
   const container = document.querySelector('.container'),
     field = document.querySelector('.field'),
     cell = document.querySelectorAll('.cell'),
@@ -84,7 +84,7 @@ const createPage = () => {
     modalItems = document.querySelectorAll('.modal__item'),
     fieldSizeValue = ['3x3', '4x4', '5x5', '6x6', '7x7', '8x8'];
 
-// let initArrLength = 15;
+  // let initArrLength = 15;
   let fieldWidth = '';
   let cellWidth = '';
   let cellHeight = '';
@@ -101,70 +101,71 @@ const createPage = () => {
     field.style.height = fieldWidth;
 
     cell.forEach((c, i) => {
-        c.style.width = parseInt(fieldWidth, 10) / numOfCellsinRow + 'px';
-        c.style.height = parseInt(fieldWidth, 10) / numOfCellsinRow + 'px';
-        c.style.fontSize = '5vw';
+      c.style.width = parseInt(fieldWidth, 10) / numOfCellsinRow + 'px';
+      c.style.height = parseInt(fieldWidth, 10) / numOfCellsinRow + 'px';
+      c.style.fontSize = '5vw';
 
-        const left = i % numOfCellsinRow;
-        // const left = JSON.parse(localStorage.getItem('newCellsValue'))[i].left
-        const top = (i - left) / numOfCellsinRow;
-        // const top = JSON.parse(localStorage.getItem('newCellsValue'))[i].top
+      const left = i % numOfCellsinRow;
+      // const left = JSON.parse(localStorage.getItem('newCellsValue'))[i].left
+      const top = (i - left) / numOfCellsinRow;
+      // const top = JSON.parse(localStorage.getItem('newCellsValue'))[i].top
 
-        if (arrOfNum[i] === 0) {
-          empty = {
-            value: 0,
-            top: top,
-            left: left,
-            element: null
-          }
-          cells.push({
-            value: 0,
-            top: top,
-            left: left,
-            element: null
-          })
-          c.style.visibility = 'hidden';
-
-        } else {
-          cells.push({ // закидываем в массив объектов все наши ячейки
-            value: +cell[i].textContent, // то, что написано в ячейке
-            left: left,
-            top: top,
-            element: cell[i]
-          });
+      if (arrOfNum[i] === 0) {
+        empty = {
+          value: 0,
+          top: top,
+          left: left,
+          element: null
         }
-
-        cell[i].style.top = `${top * parseInt(cellHeight, 10)}px`; // присваеваем расчетные значения в стили ячеек
-        cell[i].style.left = `${left * parseInt(cellWidth, 10)}px`;
-
-        //drag
-        const dragStart = () => {
-          setTimeout(() => {
-            c.classList.toggle('hide');
-          }, 0);
-        }
-        const dragEnd = () => {
-          c.classList.toggle('hide');
-          move(i);
-        }
-
-        const dragOver = () => {
-          console.log('over');
-        }
-        const dragEnter = () => {
-          console.log('enter');
-        }
-
-
-        cell[i].addEventListener('click', () => {
-          move(i);
+        cells.push({
+          value: 0,
+          top: top,
+          left: left,
+          element: null
         })
+        c.style.visibility = 'hidden';
 
-        cell[i].addEventListener('dragstart', dragStart);
-        cell[i].addEventListener('dragend', dragEnd);
-
+      } else {
+        cells.push({ // закидываем в массив объектов все наши ячейки
+          value: +cell[i].textContent, // то, что написано в ячейке
+          left: left,
+          top: top,
+          element: cell[i]
+        });
       }
-    )
+
+      cell[i].style.top = `${top * parseInt(cellHeight, 10)}px`; // присваеваем расчетные значения в стили ячеек
+      cell[i].style.left = `${left * parseInt(cellWidth, 10)}px`;
+
+      //drag
+      const dragStart = () => {
+        setTimeout(() => {
+          c.classList.toggle('hide');
+        }, 0);
+      }
+      const dragEnd = () => {
+        c.classList.toggle('hide');
+        move(i);
+      }
+
+      const dragOver = () => {
+        console.log('over');
+      }
+      const dragEnter = () => {
+        console.log('enter');
+      }
+
+
+      cell[i].addEventListener('click', () => {
+        setTimeout(() => {
+          move(i)
+        }, 500);
+      })
+
+      cell[i].addEventListener('dragstart', dragStart);
+      cell[i].addEventListener('dragend', dragEnd);
+
+    })
   }
   initGame();
 
@@ -205,7 +206,7 @@ const createPage = () => {
       modal.classList.toggle('modal__active')
       modalDialog.innerHTML =
         `Congrats! You are win with ${counterValue} moves and your time is ${timer.textContent}`
-      setTimeout(()=> {
+      setTimeout(() => {
         modal.remove();
         container.remove();
         createPage();
@@ -246,7 +247,7 @@ const createPage = () => {
 
   }
 
-//start new game
+  //start new game
   const startGame = () => {
     modal.classList.toggle('modal__active');
     modal.remove();
@@ -272,7 +273,7 @@ const createPage = () => {
       }
     })
   }
-// audio
+  // audio
   let audio = new Audio('./assets/audio/button.wav');
 
   const changeAudioStatus = () => {
