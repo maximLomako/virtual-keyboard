@@ -2,7 +2,7 @@ const toggleButton = document.querySelector(".toggleButton");
 const btnTrain = document.querySelector(".btn__train");
 const btnGame = document.querySelector(".btn__game");
 
-const buttonValue = true;
+let buttonValue = true;
 
 const changeButtonStyle = () => {
   if (buttonValue) {
@@ -14,6 +14,14 @@ const changeButtonStyle = () => {
   }
 };
 
+const changeGameMode = (e: Event) => {
+  const target = e.target;
+  if ((<Element>target).classList.contains("btn__train")) {
+    buttonValue = true;
+  } else {
+    buttonValue = false;
+  }
+  changeButtonStyle();
+};
 
-
-btnTrain.addEventListener("click", changeButtonStyle);
+toggleButton.addEventListener("click", changeGameMode);
