@@ -1,5 +1,3 @@
-import './styles/style.scss';
-
-
-const a = 'hello';
-console.log(a);
+import "./styles/style.scss";
+import "./scipts/burger";
+import "./scipts/toggleButton";

@@ -1,71 +1,76 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const {
   prod_Path,
   src_Path
-} = require('./path');
+} = require("./path");
 const {
   selectedPreprocessor
-} = require('./loader');
+} = require("./loader");
 
 module.exports = {
   entry: {
-    main: './' + src_Path + '/index.ts'
+    main: "./" + src_Path + "/index.ts"
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: [".ts", ".js"]
   },
   output: {
     path: path.resolve(__dirname, prod_Path),
-    filename: '[name].[chunkhash].js'
+    filename: "[name].[chunkhash].js"
   },
-  devtool: 'source-map',
+  devtool: "source-map",
   devServer: {
-    open: true,
+    open: true
   },
   module: {
     rules: [{
       test: /\.ts?$/,
-      use: 'ts-loader',
+      use: "ts-loader",
       exclude: /node_modules/
-    }, {
+    },
+    {
+      test: /\.(png|jpe?g|gif)$/i,
+      use: ["file-loader"]
+    },
+    {
       test: selectedPreprocessor.fileRegexp,
       use: [{
-          loader: MiniCssExtractPlugin.loader
-        },
-        {
-          loader: 'css-loader',
-          options: {
-            modules: false,
-            sourceMap: true
-          }
-        },
-        {
-          loader: 'postcss-loader',
-          options: {
-            sourceMap: true
-          }
-        },
-        {
-          loader: selectedPreprocessor.loaderName,
-          options: {
-            sourceMap: true
-          }
-        },
+        loader: MiniCssExtractPlugin.loader
+      },
+      {
+        loader: "css-loader",
+        options: {
+          modules: false,
+          sourceMap: true
+        }
+      },
+      {
+        loader: "postcss-loader",
+        options: {
+          sourceMap: true
+        }
+      },
+      {
+        loader: selectedPreprocessor.loaderName,
+        options: {
+          sourceMap: true
+        }
+      }
       ]
     }]
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'style.css'
+      filename: "style.css"
     }),
     new HtmlWebpackPlugin({
       inject: false,
       hash: false,
-      template: './' + src_Path + '/index.html',
-      filename: 'index.html'
+      template: "./" + src_Path + "/index.html",
+      filename: "index.html"
     })
   ]
 };

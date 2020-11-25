@@ -1,0 +1,23 @@
+.toggleButton {
+  display: flex;
+  background: #FF97A3;
+  color: #D9F2FF;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn__train {
+  margin-right: 5px;
+  height: 100%;
+  padding: 5px;
+}
+
+.btn__game {
+  padding: 5px;
+
+}
+
+.active{
+  background: #73FFD6;
+  transition: color .3s;
+}
