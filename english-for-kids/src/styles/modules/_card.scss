@@ -1,0 +1,111 @@
+.train__cards {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 50px;
+  height: auto;
+}
+.card {
+  position: relative;
+  border: 5px solid red;
+  transition: transform 0.8s;
+  -webkit-animation: flip-scale-up-diag-r 0.5s linear reverse both;
+  animation: flip-scale-up-diag-r 0.5s linear reverse both;
+}
+
+
+
+.card__rotated {
+  -webkit-animation: flip-scale-up-diag-1 0.5s linear both;
+  animation: flip-scale-up-diag-1 0.5s linear both;
+}
+
+.card__front {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 20px;
+  height: 100%;
+}
+
+.card__back {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 20px;
+  height: 100%;
+
+}
+.card__hidden {
+  display: none;
+}
+
+
+.card__info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30%;
+}
+
+.card__img {
+  height: 70%;
+  width: 100%;
+}
+
+.card__img-item {
+  height: 100%;
+  width: 100%;
+  border-top-right-radius: 10%;
+  border-top-left-radius: 10%;
+}
+
+.card__change-btn__icon {
+  margin-left: 20px;
+}
+
+.card__change-btn__icon:hover {
+  transform: rotate(-360deg);
+  transition: all 1s;
+}
+
+.card__change-btn__icon {
+  height: 30px;
+  width: 30px;
+}
+
+@keyframes flip-scale-up-diag-1 {
+  0% {
+    -webkit-transform: scale(1) rotate3d(1, 1, 0, 0deg);
+    transform: scale(1) rotate3d(1, 1, 0, 0deg);
+  }
+  50% {
+    -webkit-transform: scale(2.5) rotate3d(1, 1, 0, 90deg);
+    transform: scale(2.5) rotate3d(1, 1, 0, 90deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotate3d(1, 1, 0, 180deg);
+    transform: scale(1) rotate3d(1, 1, 0, 360deg);
+  }
+}
+
+
+@keyframes flip-scale-up-diag-r {
+  0% {
+    -webkit-transform: scale(1) rotate3d(1, 1, 0, 0deg);
+    transform: scale(1) rotate3d(1, 1, 0, 0deg);
+  }
+  50% {
+    -webkit-transform: scale(2.5) rotate3d(1, 1, 0, 90deg);
+    transform: scale(2.5) rotate3d(1, 1, 0, 90deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotate3d(1, 1, 0, 180deg);
+    transform: scale(1) rotate3d(1, 1, 0, 180deg);
+  }
+}
+
+
