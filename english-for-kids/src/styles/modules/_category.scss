@@ -1,4 +1,4 @@
-.card {
+.category {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,16 +9,25 @@
   background: #FFFFFF;
   margin-top: 20px;
   cursor: pointer;
+  transition: box-shadow .3s;
 }
-
-.card__top{
+.category:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  transition: box-shadow .3s;
+}
+.category__top{
   height: 40%;
   width: 100%;
   background: #9FC1FF;
   border-top-right-radius: 5%;
   border-top-left-radius: 5%;
+  transition: background-color .3s;
 }
-.card__bottom {
+.category-top--gameMod{
+  background: #FFD7AE;
+  transition: background-color .3s;
+}
+.category__bottom {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,7 +37,7 @@
   border-radius: 10%;
 }
 
-.card__icon{
+.category__icon{
   margin-top: -50px;
   display: flex;
   justify-content: center;
@@ -37,7 +46,7 @@
   width: 120px;
 
 }
-.card__icon__img{
+.category__icon__img{
   display: block;
   height: 90%;
   width: 90%;
@@ -45,6 +54,6 @@
   border-radius: 50%;
   box-shadow:  0 0 10px  rgba(0,0,0,0.6);
 }
-.card__description {
+.category__description {
   font-size: 28px;
 }

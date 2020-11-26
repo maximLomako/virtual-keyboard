@@ -1,3 +1,5 @@
+import { changeColorCategory } from "./category";
+
 const toggleButton = document.querySelector(".toggleButton");
 const btnTrain = document.querySelector(".btn__train");
 const btnGame = document.querySelector(".btn__game");
@@ -22,6 +24,9 @@ const changeGameMode = (e: Event) => {
     buttonValue = false;
   }
   changeButtonStyle();
+  changeColorCategory(buttonValue);
 };
 
 toggleButton.addEventListener("click", changeGameMode);
+
+export default buttonValue;
