@@ -1,0 +1,17 @@
+.game__cards{
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: auto;
+}
+.game__card-img{
+  height: 100%;
+}
+.game__card-img-item{
+  border-radius: 10%;
+}
+.game__status-item{
+  height: 25px;
+  width: 25px;
+}

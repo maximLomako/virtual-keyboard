@@ -1,23 +1,22 @@
-const card = document.querySelector(".card");
-const cardFront = document.querySelector(".card__front");
-const cardBack = document.querySelector(".card__back");
-const cardChangeBtnIcon = document.querySelector(".card__change-btn__icon");
-const trainCards = document.querySelector(".train__cards");
+const card = document.querySelectorAll(".card");
+const cardFront = document.querySelectorAll(".card__front");
+const cardBack = document.querySelectorAll(".card__back");
+const cardChangeBtnIcon = document.querySelectorAll(".card__change-btn__icon");
 
-const rotateCard = () => {
-  card.classList.toggle("card__rotated");
-  cardFront.classList.toggle("card__hidden");
-  cardBack.classList.toggle("card__hidden");
-};
+for (let i = 0; i < card.length; i++) {
+  const rotateCard = () => {
+    card[i].classList.toggle("card__rotated");
+    cardFront[i].classList.toggle("card__hidden");
+    cardBack[i].classList.toggle("card__hidden");
+  };
 
-const rotateCardBack = (e: Event) => {
-  const target = e.currentTarget;
-  if (card.classList.contains("card__rotated") && (<Element>target).classList.contains("card")) {
-    rotateCard();
-  }
-};
+  const rotateCardBack = (e: Event) => {
+    const target = e.currentTarget;
+    if (card[i].classList.contains("card__rotated") && (<Element>target).classList.contains("card")) {
+      rotateCard();
+    }
+  };
 
-cardChangeBtnIcon.addEventListener("click", rotateCard);
-card.addEventListener("mouseleave", rotateCardBack);
-
-
+  cardChangeBtnIcon[i].addEventListener("click", rotateCard);
+  card[i].addEventListener("mouseleave", rotateCardBack);
+}
