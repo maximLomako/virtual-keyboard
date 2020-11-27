@@ -1,6 +1,4 @@
 import cards from "./cards";
-import {renderTrainModeCarts} from "./trainMode";
-import {startRotate} from "./rotateCard";
 
 export const main = document.querySelector(".main");
 export const [categories, ...cardsItems] = cards;
@@ -20,7 +18,7 @@ const renderCategoriesBlock = () => {
 };
 renderCategoriesBlock();
 
-const category = document.querySelectorAll(".category");
+export const category = document.querySelectorAll(".category");
 const categoryTop = document.querySelectorAll(".category__top");
 
 export const changeColorCategory = (buttonValue: boolean) => {
@@ -32,14 +30,3 @@ export const changeColorCategory = (buttonValue: boolean) => {
     }
   });
 };
-
-const getAttributeFromCategoryCard = (e: Event) => {
-  const attributeFromCategoryCard = +(e.currentTarget as HTMLButtonElement).getAttribute("dataValue");
-  main.innerHTML = "";
-  renderTrainModeCarts(attributeFromCategoryCard);
-  startRotate();
-};
-
-for (let i = 0; i < category.length; i += 1) {
-  category[i].addEventListener("click", getAttributeFromCategoryCard);
-}

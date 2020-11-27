@@ -1,6 +1,7 @@
-import {cardsItems, main} from "./category";
+import {cardsItems, category, main} from "./category";
+import {startRotate} from "./rotateCard";
 
-export const renderTrainModeCarts = (categoryNum: number) => {
+const renderTrainModeCarts = (categoryNum: number) => {
   cardsItems.map((c: string, i: number) => main.insertAdjacentHTML("beforeend",
     `           <div class="category card ">
             <div class="card__front ">
@@ -25,3 +26,31 @@ export const renderTrainModeCarts = (categoryNum: number) => {
           </div>`));
 };
 
+const playSound = (e: Event, categoryNum: number, i: number) => {
+  const target = e.target;
+  if (!(<Element>target).classList.contains("card__change-btn__icon")) {
+    const audio = new Audio(`../src/assets/${cardsItems[categoryNum][i].audioSrc}`);
+    audio.play();
+  }
+};
+
+const addVoiceOfWord = (categoryNum: number) => {
+  const cards = document.querySelectorAll(".card");
+  for (let i = 0; i < cards.length; i += 1) {
+    cards[i].addEventListener("click", (e) => {
+      playSound(e, categoryNum, i);
+    });
+  }
+};
+
+export const startTrainMode = (e: Event) => {
+  const attributeFromCategoryCard = +(e.currentTarget as HTMLButtonElement).getAttribute("dataValue");
+  main.innerHTML = "";
+  renderTrainModeCarts(attributeFromCategoryCard);
+  startRotate();
+  addVoiceOfWord(attributeFromCategoryCard);
+};
+
+for (let i = 0; i < category.length; i += 1) {
+  category[i].addEventListener("click", startTrainMode);
+}

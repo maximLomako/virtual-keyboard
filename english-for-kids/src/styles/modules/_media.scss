@@ -1,0 +1,8 @@
+@media (max-width: 500px) {
+  .footer-block{
+    flex-direction: column;
+  }
+  .footer-block__item:first-child{
+    margin-bottom: 20px;
+  }
+}
