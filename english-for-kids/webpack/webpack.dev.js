@@ -36,6 +36,10 @@ module.exports = {
       use: ["file-loader"]
     },
     {
+      test: /\.(mp3|wav)$/i,
+      use: ["file-loader"]
+    },
+    {
       test: selectedPreprocessor.fileRegexp,
       use: [{
         loader: MiniCssExtractPlugin.loader
