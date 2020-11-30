@@ -1,5 +1,6 @@
 import {cardsItems, category, main} from "./category";
 import {startRotate} from "./rotateCard";
+import {makeActiveLinks} from "./burger";
 
 const renderTrainModeCarts = (categoryNum: number) => {
   cardsItems.map((c: string, i: number) => main.insertAdjacentHTML("beforeend",
@@ -53,4 +54,7 @@ export const startTrainMode = (e: Event) => {
 
 for (let i = 0; i < category.length; i += 1) {
   category[i].addEventListener("click", startTrainMode);
+  category[i].addEventListener("click", () => {
+    makeActiveLinks(i);
+  });
 }
