@@ -2,9 +2,10 @@ import cards from "./cards";
 
 export const main = document.querySelector(".main");
 export const [categories, ...cardsItems] = cards;
-const categoriesAvatarIndex = 6;
+export const categoriesAvatarIndex = 6;
 
-const renderCategoriesBlock = () => {
+export const renderCategoriesBlock = () => {
+  main.innerHTML = "";
   categories.map((c: string, i: number) => main.insertAdjacentHTML("beforeend",
     ` <div class="category" dataValue=${i}>
               <div class="category__top"></div>
