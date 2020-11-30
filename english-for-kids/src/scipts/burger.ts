@@ -50,7 +50,7 @@ const burgerMenuLink = document.querySelectorAll(".burger-menu_link");
 const makeActiveFirstLink = () => {
   burgerMenuLink[firstArrayItem].classList.add("burger-menu_link_active");
 };
-const makeActiveLinks = (i: number) => {
+export const makeActiveLinks = (i: number) => {
   for (let j = 0; j < burgerCategories.length; j += 1) {
     burgerMenuLink[j].classList.remove("burger-menu_link_active");
   }
@@ -58,19 +58,22 @@ const makeActiveLinks = (i: number) => {
 };
 makeActiveFirstLink();
 
+export const chooseCategory = (e: Event, i: number) => {
+  if (i === 0) {
+    window.location.reload();
+  }
+  if (i > 0 && i < 9) {
+    startTrainMode(e);
+  }
+  if (i === 9) {
+    alert("Statistics");
+  }
+  makeActiveLinks(i);
+};
 
 for (let i = 0; i < burgerCategories.length; i += 1) {
   burgerMenuLink[i].addEventListener("click", (e) => {
-    if (i === 0) {
-      window.location.reload();
-    }
-    if (i > 0 && i < 9) {
-      startTrainMode(e);
-    }
-    if (i === 9) {
-      alert("Statistics");
-    }
-    makeActiveLinks(i);
+    chooseCategory(e, i);
   });
 }
 
