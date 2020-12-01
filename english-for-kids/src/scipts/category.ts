@@ -17,7 +17,7 @@ export const renderCategoriesBlock = () => {
                </div>
              </div>`));
 };
-renderCategoriesBlock();
+// renderCategoriesBlock();
 
 export const category = document.querySelectorAll(".category");
 const categoryTop = document.querySelectorAll(".category__top");

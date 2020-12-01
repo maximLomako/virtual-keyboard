@@ -1,5 +1,4 @@
 .btn {
-
   display: block;
   margin: 0 auto;
   color: #616771;
@@ -11,4 +10,18 @@
   cursor: pointer;
   border-radius: 5%;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  transition: background 1s;
+  transition: box-shadow 1s;
+  outline: none;
+}
+
+.btn:hover {
+  background: #E1F0BB;
+  box-shadow: -2px 1px 40px 1px rgba(0,0,0,0.74);
+  transition: all 1s;
+}
+
+.btn img{
+  height: 45px;
+  width: 45px;
 }
