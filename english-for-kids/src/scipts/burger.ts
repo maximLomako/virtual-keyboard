@@ -21,7 +21,6 @@ burgerCardItems[lastArrayItem][categoriesAvatarIndex] = {
   image: "images/stat.png"
 };
 
-
 const createBurgerMenu = () => {
   burgerCategories.map((t:string, i:number) => burgerMenuNav.insertAdjacentHTML("beforeend",
     `<a href="#section-1" class="burger-menu_link" dataValue=${i - 1}>

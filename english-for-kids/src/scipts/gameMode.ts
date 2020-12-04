@@ -1,4 +1,7 @@
 import {cardsItems, main} from "./category";
+import {startRotate} from "./rotateCard";
+import {makeActiveLinks} from "./burger";
+const category = document.querySelectorAll(".category");
 
 type cardItemsItem = {
   word: string
@@ -7,7 +10,7 @@ type cardItemsItem = {
   audioSrc: string
 }
 
-export const renderGameModeCards = (categoryNum: number) => {
+const renderGameModeCards = (categoryNum: number) => {
   main.insertAdjacentHTML("beforeend", "<div class=\"game__cards\"><div>");
   const gameCards = document.querySelector(".game__cards");
   gameCards.innerHTML = "";
@@ -26,31 +29,12 @@ export const renderGameModeCards = (categoryNum: number) => {
       btn.innerHTML = "<img src='../src/assets/images/repeat.png' alt='repeat-btn'/>";
     }
   };
-
-  const addStarToTheScreen = (image: string) => {
-    const gameStatus = document.querySelector(".game__status");
-    gameStatus.insertAdjacentHTML("beforeend",
-      `<img src=/src/assets/images/${image} alt=star-win class=game__status-item />`);
-  };
-  addStarToTheScreen("starSuccess.svg");
-  addStarToTheScreen("starLoose.svg");
-
-  // start game
-  const voiceTheWord = (soundName: string) => {
-    const audio = new Audio(`../src/assets/${soundName[0]}`);
-    audio.play();
-  };
-
-  const startGame = () => {
-    const arrayOfSounds = cardsItems[categoryNum].map((s: cardItemsItem) => s.audioSrc)
-      .sort(() => Math.random() - 0.5);
-    changeButtonStyle();
-  };
-
-  btn.addEventListener("click", () => {
-    console.log("her");
-  });
 };
 
+export const startGameMode = (e: Event) => {
+  const attributeFromCategoryCard = +(e.currentTarget as HTMLButtonElement).getAttribute("dataValue");
+  main.innerHTML = "";
+  renderGameModeCards(attributeFromCategoryCard);
+};
 
 

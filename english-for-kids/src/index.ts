@@ -1,6 +1,6 @@
 import "./styles/style.scss";
-import "./scipts/burger";
 import "./scipts/category";
+import "./scipts/burger";
 import "./scipts/cards";
 import "./scipts/rotateCard";
 import "./scipts/toggleButton";
