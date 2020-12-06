@@ -22,14 +22,18 @@ const changeGameMode = (e: Event) => {
     btnGame.classList.remove("active");
     setButtonValue(true);
     changeColorCategory();
-    if (categoryValue >= 0) renderTrainModeCartsBlock(categoryValue);
+    if (categoryValue !== null && categoryValue >= 0) {
+      renderTrainModeCartsBlock(categoryValue);
+    }
   }
   if ((<Element>target).classList.contains("btn__game")) {
     btnTrain.classList.remove("active");
     btnGame.classList.add("active");
     setButtonValue(false);
     changeColorCategory();
-    if (categoryValue >= 0) renderGameModeCards(categoryValue);
+    if (categoryValue !== null && categoryValue >= 0) {
+      renderGameModeCards(categoryValue);
+    }
   }
 };
 
