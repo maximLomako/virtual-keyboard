@@ -1,8 +1,7 @@
 import "./styles/style.scss";
-import "./scipts/category";
+import "./scipts/state";
+import "./scipts/rotateCards";
 import "./scipts/burger";
-import "./scipts/cards";
-import "./scipts/rotateCard";
-import "./scipts/toggleButton";
-import "./scipts/trainMode";
-import "./scipts/gameMode";
+import "./scipts/category";
+import "./scipts/trainModeCards";
+import "./scipts/gameModeCards";

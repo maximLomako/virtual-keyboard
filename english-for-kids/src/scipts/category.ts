@@ -1,20 +1,45 @@
-import cards from "./cards";
+import {
+  buttonValue,
+  cardsItemsData, categoriesAvatarIndex, categoriesData, categoryValue, incMutableValue, main
+} from "./state";
+import {renderGameModeCards} from "./gameModeCards";
+import {renderTrainModeCartsBlock} from "./trainModeCards";
+let attributeFromCategoryCard: null | number = null;
 
-export const main = document.querySelector(".main");
-export const [categories, ...cardsItems] = cards;
-export const categoriesAvatarIndex = 6;
 
 export const renderCategoriesBlock = () => {
   main.innerHTML = "";
-  categories.map((c: string, i: number) => main.insertAdjacentHTML("beforeend",
+  categoriesData.map((c: string, i: number) => main.insertAdjacentHTML("beforeend",
     ` <div class="category" dataValue=${i}>
               <div class="category__top"></div>
               <div class="category__bottom">
                 <div class="category__icon">
-                 <img src="../src/assets/${cardsItems[i][categoriesAvatarIndex].image}" alt="category__icon__img" class="category__icon__img">
+                 <img src="../src/assets/${cardsItemsData[i][categoriesAvatarIndex].image}" alt="category__icon__img" class="category__icon__img">
                 </div>
                 <h3 class="category__description">${c}</h3>
                </div>
              </div>`));
 };
 renderCategoriesBlock();
+
+const getAttributeFromCategoryCard = (e: Event) => {
+  const target = e.target;
+  if ((<Element>target).closest(".category")) {
+    attributeFromCategoryCard = +(<Element>target).closest(".category").getAttribute("dataValue");
+    incMutableValue(attributeFromCategoryCard);
+  }
+};
+
+const chooseGameMode = (e: Event) => {
+  const target = e.target;
+  if ((<Element>target).closest(".category")) {
+    if (buttonValue) {
+      renderTrainModeCartsBlock(categoryValue);
+    } else {
+      renderGameModeCards(categoryValue);
+    }
+  }
+};
+
+main.addEventListener("click", getAttributeFromCategoryCard);
+main.addEventListener("click", chooseGameMode);

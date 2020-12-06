@@ -9,9 +9,11 @@ export const startRotate = () => {
       card[i].classList.toggle("card__rotated");
       cardFront[i].classList.toggle("card__hidden");
       cardBack[i].classList.toggle("card__hidden");
+
     };
 
     const rotateCardBack = (e: Event) => {
+      e.preventDefault();
       const target = e.currentTarget;
       if (card[i].classList.contains("card__rotated") && (<Element>target).classList.contains("card")) {
         rotateCard();
