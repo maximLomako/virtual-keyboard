@@ -1,6 +1,4 @@
 import {cardsItems, main} from "./category";
-import {startRotate} from "./rotateCard";
-import {makeActiveLinks} from "./burger";
 const category = document.querySelectorAll(".category");
 
 type cardItemsItem = {
@@ -10,7 +8,7 @@ type cardItemsItem = {
   audioSrc: string
 }
 
-const renderGameModeCards = (categoryNum: number) => {
+export const renderGameModeCards = (categoryNum: number) => {
   main.insertAdjacentHTML("beforeend", "<div class=\"game__cards\"><div>");
   const gameCards = document.querySelector(".game__cards");
   gameCards.innerHTML = "";
@@ -36,5 +34,4 @@ export const startGameMode = (e: Event) => {
   main.innerHTML = "";
   renderGameModeCards(attributeFromCategoryCard);
 };
-
 

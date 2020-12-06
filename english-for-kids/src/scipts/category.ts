@@ -1,7 +1,4 @@
 import cards from "./cards";
-// import {makeActiveLinks} from "./burger";
-import {startTrainMode} from "./trainMode";
-import {makeActiveLinks} from "./burger";
 
 export const main = document.querySelector(".main");
 export const [categories, ...cardsItems] = cards;
@@ -19,6 +16,5 @@ export const renderCategoriesBlock = () => {
                 <h3 class="category__description">${c}</h3>
                </div>
              </div>`));
-
 };
 renderCategoriesBlock();

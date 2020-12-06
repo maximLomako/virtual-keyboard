@@ -1,5 +1,7 @@
 import {cardsItems, categories, categoriesAvatarIndex, renderCategoriesBlock} from "./category";
 import {startTrainMode} from "./trainMode";
+import {buttonValue} from "./toggleButton";
+import {startGameMode} from "./gameMode";
 
 const burgerMenuNav = document.querySelector(".burger-menu_nav");
 const burgerCategories = [...categories];
@@ -28,7 +30,7 @@ const createBurgerMenu = () => {
               <li class="burger-menu_nav-title">${t.toUpperCase()}</li>
             </a>`));
 };
-const burgerMenu = document.querySelector(".burger-menu");
+ const burgerMenu = document.querySelector(".burger-menu");
 const toggleModal = (e: Event) => {
   e.preventDefault();
   const target = e.target;
@@ -62,7 +64,9 @@ export const chooseCategory = (e: Event, i: number) => {
     window.location.reload();
   }
   if (i > 0 && i < 9) {
-    startTrainMode(e);
+    // eslint-disable-next-line no-unused-expressions
+    (buttonValue) ? startTrainMode(e) : startGameMode(e);
+
   }
   if (i === 9) {
     alert("Statistics");

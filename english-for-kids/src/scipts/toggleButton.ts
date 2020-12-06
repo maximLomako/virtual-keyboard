@@ -1,13 +1,46 @@
 import {makeActiveLinks} from "./burger";
-import {startGameMode} from "./gameMode";
-import {startTrainMode} from "./trainMode";
+import {renderGameModeCards, startGameMode} from "./gameMode";
+import {addVoiceOfWord, renderTrainModeCarts, startTrainMode} from "./trainMode";
+import {main} from "./category";
+import {startRotate} from "./rotateCard";
 
 const toggleButton = document.querySelector(".toggleButton");
 const btnTrain = document.querySelector(".btn__train");
 const btnGame = document.querySelector(".btn__game");
 const categoryTop = document.querySelectorAll(".category__top");
 const category = document.querySelectorAll(".category");
-let buttonValue = true;
+export let buttonValue = true;
+export let attributeFromCategoryCard: null | number = null;
+
+const saveCategoryCardDataValue = () => {
+  const saveCardDataValue = (e: Event) => {
+    attributeFromCategoryCard = +(e.currentTarget as HTMLButtonElement).getAttribute("dataValue");
+  };
+  for (let i = 0; i < category.length; i += 1) {
+    category[i].addEventListener("click", (e) => {
+      saveCardDataValue(e);
+    });
+  }
+};
+saveCategoryCardDataValue();
+
+const callingTrainMode = () => {
+  if (attributeFromCategoryCard === null) {
+    return;
+  }
+  main.innerHTML = "";
+  renderTrainModeCarts(attributeFromCategoryCard);
+  startRotate();
+  addVoiceOfWord(attributeFromCategoryCard);
+};
+
+const callingGameMode = () => {
+  if (attributeFromCategoryCard === null) {
+    return;
+  }
+  main.innerHTML = "";
+  renderGameModeCards(attributeFromCategoryCard);
+};
 
 const changeButtonStyle = () => {
   if (buttonValue) {
@@ -20,7 +53,6 @@ const changeButtonStyle = () => {
     buttonValue = false;
   }
 };
-changeButtonStyle();
 
 const changeColorCategory = () => {
   categoryTop.forEach(el => {
@@ -32,35 +64,43 @@ const changeColorCategory = () => {
   });
 };
 
+const startPlayTrainMode = () => {
+  for (let i = 0; i < category.length; i += 1) {
+    category[i].addEventListener("click", startTrainMode);
+    category[i].addEventListener("click", () => {
+      makeActiveLinks(i);
+    });
+  }
+};
+const startPlayGameMode = () => {
+  for (let i = 0; i < category.length; i += 1) {
+    category[i].addEventListener("click", startGameMode);
+    category[i].addEventListener("click", () => {
+      makeActiveLinks(i);
+    });
+  }
+};
+
+export const initGameMode = () => {
+  if (buttonValue) {
+    startPlayTrainMode();
+  } else {
+    startPlayGameMode();
+  }
+};
 const changeGameMode = (e: Event) => {
   const target = e.target;
   if ((<Element>target).classList.contains("btn__train")) {
     buttonValue = true;
-
+    callingTrainMode();
   } else {
     buttonValue = false;
-
+    callingGameMode();
   }
   changeButtonStyle();
   changeColorCategory();
-};
-
-const initGameMode = () => {
-  if (buttonValue) {
-    for (let i = 0; i < category.length; i += 1) {
-      category[i].addEventListener("click", startTrainMode);
-      category[i].addEventListener("click", () => {
-        makeActiveLinks(i);
-      });
-    }
-  } else {
-    for (let i = 0; i < category.length; i += 1) {
-      category[i].addEventListener("click", startGameMode);
-      category[i].addEventListener("click", () => {
-        makeActiveLinks(i);
-      });
-    }
-  }
+  initGameMode();
 };
 initGameMode();
+
 toggleButton.addEventListener("click", changeGameMode);
