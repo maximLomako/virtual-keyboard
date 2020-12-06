@@ -2,7 +2,7 @@ import {
   burgerCardItems,
   burgerCategories, buttonValue,
   categoriesAvatarIndex, categoryValue,
-  firstArrayItemIndex, incMutableValue
+  firstArrayItemIndex, getCategoryValue
 } from "./state";
 import {renderCategoriesBlock} from "./category";
 import {renderTrainModeCartsBlock} from "./trainModeCards";
@@ -75,7 +75,7 @@ const getAttributeFromBurgerCard = (e: Event) => {
   if ((<Element>target).closest(".burger-menu_link")
     && !(<Element>target).closest(".burger-menu_button")) {
     attributeFromBurgerItem = +(<Element>target).closest(".burger-menu_link").getAttribute("dataValue");
-    incMutableValue(attributeFromBurgerItem);
+    getCategoryValue(attributeFromBurgerItem);
   }
 };
 

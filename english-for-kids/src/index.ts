@@ -5,3 +5,4 @@ import "./scipts/burger";
 import "./scipts/category";
 import "./scipts/trainModeCards";
 import "./scipts/gameModeCards";
+import "./scipts/toogleModeButton";

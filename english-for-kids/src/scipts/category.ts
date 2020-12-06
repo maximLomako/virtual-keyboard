@@ -1,9 +1,10 @@
 import {
   buttonValue,
-  cardsItemsData, categoriesAvatarIndex, categoriesData, categoryValue, incMutableValue, main
+  cardsItemsData, categoriesAvatarIndex, categoriesData, categoryValue, getCategoryValue, main
 } from "./state";
 import {renderGameModeCards} from "./gameModeCards";
 import {renderTrainModeCartsBlock} from "./trainModeCards";
+import {changeColorCategory} from "./toogleModeButton";
 let attributeFromCategoryCard: null | number = null;
 
 
@@ -19,6 +20,7 @@ export const renderCategoriesBlock = () => {
                 <h3 class="category__description">${c}</h3>
                </div>
              </div>`));
+  changeColorCategory();
 };
 renderCategoriesBlock();
 
@@ -26,7 +28,7 @@ const getAttributeFromCategoryCard = (e: Event) => {
   const target = e.target;
   if ((<Element>target).closest(".category")) {
     attributeFromCategoryCard = +(<Element>target).closest(".category").getAttribute("dataValue");
-    incMutableValue(attributeFromCategoryCard);
+    getCategoryValue(attributeFromCategoryCard);
   }
 };
 
