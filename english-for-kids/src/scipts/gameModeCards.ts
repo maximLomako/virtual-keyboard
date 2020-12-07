@@ -108,8 +108,6 @@ export const renderGameModeCards = (categoryNum: number) => {
   const startGameInGameMOde = (e: Event) => {
     const target = e.target;
     let imgSrc = "";
-    if (dataForGameMode.length === 0) {
-    }
     if ((<Element>target).classList.contains("game__card-img-item")) {
       imgSrc = (<Element>target).getAttribute("src").replace("../src/assets/", "");
       if (imgSrc !== dataForGameMode[0].image) {
@@ -128,7 +126,7 @@ export const renderGameModeCards = (categoryNum: number) => {
         addStarCorrectAnswer();
       }
     }
-  }
+  };
   btn.addEventListener("click", () => {
     voiceTheWord();
     rerenderBtn();
@@ -137,6 +135,13 @@ export const renderGameModeCards = (categoryNum: number) => {
   main.addEventListener("click", (e) => {
     if (newGameButtonStatus) {
       startGameInGameMOde(e);
+    }
+  });
+  const header = document.querySelector("header");
+  header.addEventListener("click", (e) => {
+    const target = e.target;
+    if (!(<Element>target).classList.contains("header")) {
+      newGameButtonStatus = false;
     }
   });
 };
