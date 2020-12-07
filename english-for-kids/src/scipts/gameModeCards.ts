@@ -1,6 +1,6 @@
-import {CardItemsDataType, cardsItemsData, main} from "./state";
+import { CardItemsDataType, cardsItemsData, main } from "./state";
 import cards from "./cards";
-import {renderCategoriesBlock} from "./category";
+import { renderCategoriesBlock } from "./category";
 
 export const renderGameModeCards = (categoryNum: number) => {
   main.innerHTML = "";
@@ -22,19 +22,13 @@ export const renderGameModeCards = (categoryNum: number) => {
   const gameStatus = document.querySelector(".game__status");
   const cardsForGameMode = [...cards];
   cardsForGameMode.shift();
-  let dataForGameMode = cardsForGameMode[categoryNum].filter((d: CardItemsDataType) => ({...d}));
+  let dataForGameMode = cardsForGameMode[categoryNum].filter((d: CardItemsDataType) => ({ ...d }));
   dataForGameMode = dataForGameMode.sort(() => Math.random() - 0.5);
   let mistakeCounter = 0;
   let newGameButtonStatus = false;
 
-
-  const voiceMistake = () => {
-    const audio = new Audio("../src/assets/audio/error.mp3");
-    audio.play();
-  };
-
-  const voiceRight = () => {
-    const audio = new Audio("../src/assets/audio/correct.mp3");
+  const playSoundFunc = (soundName: string) => {
+    const audio = new Audio(`../src/assets/audio/${soundName}`);
     audio.play();
   };
 
@@ -42,18 +36,12 @@ export const renderGameModeCards = (categoryNum: number) => {
     dataForGameMode.shift();
   };
 
-  const addStarCorrectAnswer = () => {
+  const addStarAnswer = (imgName: string) => {
     if (gameStatus.childElementCount === 18) {
       gameStatus.removeChild(gameStatus.childNodes[0]);
     }
-    gameStatus.insertAdjacentHTML("beforeend", "<img src='../src/assets/images/starSuccess.svg' class='game__status-item'>");
-  };
-
-  const addStarWrongAnswer = () => {
-    if (gameStatus.childElementCount === 18) {
-      gameStatus.removeChild(gameStatus.childNodes[0]);
-    }
-    gameStatus.insertAdjacentHTML("beforeend", "<img src='../src/assets/images/starLoose.svg' class='game__status-item'>");
+    gameStatus.insertAdjacentHTML("beforeend",
+      `<img src=../src/assets/images/${imgName} class=game__status-item>`);
   };
 
   const rerenderBtn = () => {
@@ -64,19 +52,9 @@ export const renderGameModeCards = (categoryNum: number) => {
     mistakeCounter += 1;
   };
 
-  const congratSound = () => {
-    const audio = new Audio("../src/assets/audio/success.mp3");
-    audio.play();
-  };
-
-  const failureSound = () => {
-    const audio = new Audio("../src/assets/audio/failure.mp3");
-    audio.play();
-  };
-
   const finishedGame = () => {
     if (mistakeCounter === 0) {
-      congratSound();
+      playSoundFunc("success.mp3");
       main.innerHTML = "<img src='../src/assets/images/wiseOwl.png' class='wiseOwl'>";
       mistakeCounter = 0;
       setTimeout(() => {
@@ -84,7 +62,7 @@ export const renderGameModeCards = (categoryNum: number) => {
       }, 2000);
     }
     if (mistakeCounter > 0) {
-      failureSound();
+      playSoundFunc("failure.mp3");
       main.innerHTML = `<img src='../src/assets/images/sadOwl.png' class='wiseOwl'>
         <h2 class="category__description">You ended the game with ${mistakeCounter} mistakes</h2>`;
       mistakeCounter = 0;
@@ -104,45 +82,50 @@ export const renderGameModeCards = (categoryNum: number) => {
     audio.play();
   };
 
-
   const startGameInGameMOde = (e: Event) => {
     const target = e.target;
     let imgSrc = "";
     if ((<Element>target).classList.contains("game__card-img-item")) {
       imgSrc = (<Element>target).getAttribute("src").replace("../src/assets/", "");
       if (imgSrc !== dataForGameMode[0].image) {
-        voiceMistake();
-        addStarWrongAnswer();
+        playSoundFunc("error.mp3");
+        addStarAnswer("starLoose.svg");
         countMistake();
       }
       if (imgSrc === dataForGameMode[0].image) {
-        voiceRight();
+        playSoundFunc("correct.mp3");
         deleteFirstItemFromArray();
         setTimeout(() => {
           voiceTheWord();
         }, 1000);
         // @ts-ignore
         (<Element>target).parentNode.parentNode.classList.add("disabled-card");
-        addStarCorrectAnswer();
+        addStarAnswer("starSuccess.svg");
       }
     }
   };
-  btn.addEventListener("click", () => {
-    voiceTheWord();
-    rerenderBtn();
-    newGameButtonStatus = true;
-  });
-  main.addEventListener("click", (e) => {
-    if (newGameButtonStatus) {
-      startGameInGameMOde(e);
-    }
-  });
-  const header = document.querySelector("header");
-  header.addEventListener("click", (e) => {
+
+  const protection = (e: Event) => {
     const target = e.target;
     if (!(<Element>target).classList.contains("header")) {
       newGameButtonStatus = false;
     }
-  });
-};
+  };
 
+  const buttonClickHandler = () => {
+    voiceTheWord();
+    rerenderBtn();
+    newGameButtonStatus = true;
+  };
+
+  const checkGameStatus = (e: Event) => {
+    if (newGameButtonStatus) {
+      startGameInGameMOde(e);
+    }
+  };
+
+  btn.addEventListener("click", buttonClickHandler);
+  main.addEventListener("click", checkGameStatus);
+  const header = document.querySelector("header");
+  header.addEventListener("click", protection);
+};
