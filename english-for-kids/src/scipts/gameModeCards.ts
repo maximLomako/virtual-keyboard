@@ -26,6 +26,7 @@ export const renderGameModeCards = (categoryNum: number) => {
   dataForGameMode = dataForGameMode.sort(() => Math.random() - 0.5);
   let mistakeCounter = 0;
   let newGameButtonStatus = false;
+  const gameStatusMaxValueChild = 18;
 
   const playSoundFunc = (soundName: string) => {
     const audio = new Audio(`../src/assets/audio/${soundName}`);
@@ -37,7 +38,7 @@ export const renderGameModeCards = (categoryNum: number) => {
   };
 
   const addStarAnswer = (imgName: string) => {
-    if (gameStatus.childElementCount === 18) {
+    if (gameStatus.childElementCount === gameStatusMaxValueChild) {
       gameStatus.removeChild(gameStatus.childNodes[0]);
     }
     gameStatus.insertAdjacentHTML("beforeend",

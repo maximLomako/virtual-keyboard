@@ -7,6 +7,7 @@ import {
 import {renderCategoriesBlock} from "./category";
 import {renderTrainModeCartsBlock} from "./trainModeCards";
 import {renderGameModeCards} from "./gameModeCards";
+import {renderStatisticsBlock} from "./statistics";
 
 const burgerMenuNav = document.querySelector(".burger-menu_nav");
 export let attributeFromBurgerItem: null | number = null;
@@ -64,7 +65,7 @@ export const chooseCategory = (i: number, e: Event) => {
       }
     }
     if (i === 9) {
-      alert("Statistics");
+      renderStatisticsBlock();
     }
     makeActiveLinks(i);
   }
@@ -79,9 +80,10 @@ const getAttributeFromBurgerCard = (e: Event) => {
   }
 };
 
-burgerMenu.addEventListener("click", getAttributeFromBurgerCard);
-burgerMenu.addEventListener("click", (e) => {
+const burgerMenuButtonHandler = (e: Event) => {
   chooseCategory(categoryValue + 1, e);
-});
+};
 
+burgerMenu.addEventListener("click", getAttributeFromBurgerCard);
+burgerMenu.addEventListener("click", burgerMenuButtonHandler);
 burgerMenu.addEventListener("click", toggleModal);
