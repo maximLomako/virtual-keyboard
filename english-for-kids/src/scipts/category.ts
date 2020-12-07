@@ -22,7 +22,7 @@ export const renderCategoriesBlock = () => {
              </div>`));
   changeColorCategory();
 };
-renderCategoriesBlock();
+// renderCategoriesBlock();
 
 const getAttributeFromCategoryCard = (e: Event) => {
   const target = e.target;

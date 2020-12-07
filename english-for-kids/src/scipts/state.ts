@@ -1,6 +1,6 @@
 import cards from "./cards";
 
-type CardItemsDataType = {
+export type CardItemsDataType = {
   word: string
   translation: string
   image: string

@@ -14,6 +14,12 @@
   animation: flip-scale-up-diag-r 0.5s linear reverse both;
 }
 
+.disabled-card {
+  pointer-events: none;
+  cursor: none;
+  filter: grayscale(100%);
+}
+
 .card__rotated {
   -webkit-animation: flip-scale-up-diag-1 0.5s linear both;
   animation: flip-scale-up-diag-1 0.5s linear both;

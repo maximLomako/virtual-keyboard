@@ -46,4 +46,4 @@ export const renderTrainModeCartsBlock = (categoryNum: number) => {
   addVoiceOfWord();
   startRotate();
 };
-// renderTrainModeCartsBlock(0);
+
