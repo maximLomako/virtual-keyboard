@@ -1,5 +1,6 @@
 import {CardItemsDataType, cardsItemsData, main} from "./state";
 import cards from "./cards";
+import {renderCategoriesBlock} from "./category";
 
 export const renderGameModeCards = (categoryNum: number) => {
   main.innerHTML = "";
@@ -17,34 +18,24 @@ export const renderGameModeCards = (categoryNum: number) => {
   main.insertAdjacentHTML("afterbegin", "<div class=\"game__status\"></div>");
   gameCards.insertAdjacentHTML("afterend", "<button class='btn'>New Game</button>");
 
-  type arraySoundsType = {
-    image: string
-    audioSrc: string
-  }
-
   const btn = document.querySelector(".btn");
   const gameStatus = document.querySelector(".game__status");
   const cardsForGameMode = [...cards];
   cardsForGameMode.shift();
   let dataForGameMode = cardsForGameMode[categoryNum].filter((d: CardItemsDataType) => ({...d}));
   dataForGameMode = dataForGameMode.sort(() => Math.random() - 0.5);
-  console.log(dataForGameMode);
+  let mistakeCounter = 0;
+  let newGameButtonStatus = false;
 
-  const voiceTheWord = () => {
-    const audio = new Audio(`../src/assets/${dataForGameMode[categoryNum].audioSrc}`);
-    audio.play();
-  };
 
   const voiceMistake = () => {
     const audio = new Audio("../src/assets/audio/error.mp3");
     audio.play();
-    console.log("mistake");
   };
 
   const voiceRight = () => {
     const audio = new Audio("../src/assets/audio/correct.mp3");
     audio.play();
-    console.log("rigth");
   };
 
   const deleteFirstItemFromArray = () => {
@@ -63,29 +54,70 @@ export const renderGameModeCards = (categoryNum: number) => {
       gameStatus.removeChild(gameStatus.childNodes[0]);
     }
     gameStatus.insertAdjacentHTML("beforeend", "<img src='../src/assets/images/starLoose.svg' class='game__status-item'>");
-
-  }
+  };
 
   const rerenderBtn = () => {
     btn.innerHTML = "<img src='../src/assets/images/repeat.svg'/>";
   };
 
-  btn.addEventListener("click", () => {
-    console.log("hello");
-    voiceTheWord();
-    rerenderBtn();
-  });
+  const countMistake = () => {
+    mistakeCounter += 1;
+  };
 
-  main.addEventListener("click", (e) => {
+  const congratSound = () => {
+    const audio = new Audio("../src/assets/audio/success.mp3");
+    audio.play();
+  };
+
+  const failureSound = () => {
+    const audio = new Audio("../src/assets/audio/failure.mp3");
+    audio.play();
+  };
+
+  const finishedGame = () => {
+    if (mistakeCounter === 0) {
+      congratSound();
+      main.innerHTML = "<img src='../src/assets/images/wiseOwl.png' class='wiseOwl'>";
+      mistakeCounter = 0;
+      setTimeout(() => {
+        renderCategoriesBlock();
+      }, 2000);
+    }
+    if (mistakeCounter > 0) {
+      failureSound();
+      main.innerHTML = `<img src='../src/assets/images/sadOwl.png' class='wiseOwl'>
+        <h2 class="category__description">You ended the game with ${mistakeCounter} mistakes</h2>`;
+      mistakeCounter = 0;
+      setTimeout(() => {
+        renderCategoriesBlock();
+      }, 3000);
+    }
+    newGameButtonStatus = false;
+  };
+
+  const voiceTheWord = () => {
+    if (dataForGameMode.length === 0) {
+      finishedGame();
+      return;
+    }
+    const audio = new Audio(`../src/assets/${dataForGameMode[0].audioSrc}`);
+    audio.play();
+  };
+
+
+  const startGameInGameMOde = (e: Event) => {
     const target = e.target;
     let imgSrc = "";
+    if (dataForGameMode.length === 0) {
+    }
     if ((<Element>target).classList.contains("game__card-img-item")) {
       imgSrc = (<Element>target).getAttribute("src").replace("../src/assets/", "");
-      if (imgSrc !== dataForGameMode[categoryNum].image) {
+      if (imgSrc !== dataForGameMode[0].image) {
         voiceMistake();
         addStarWrongAnswer();
+        countMistake();
       }
-      if (imgSrc === dataForGameMode[categoryNum].image) {
+      if (imgSrc === dataForGameMode[0].image) {
         voiceRight();
         deleteFirstItemFromArray();
         setTimeout(() => {
@@ -96,6 +128,16 @@ export const renderGameModeCards = (categoryNum: number) => {
         addStarCorrectAnswer();
       }
     }
+  }
+  btn.addEventListener("click", () => {
+    voiceTheWord();
+    rerenderBtn();
+    newGameButtonStatus = true;
+  });
+  main.addEventListener("click", (e) => {
+    if (newGameButtonStatus) {
+      startGameInGameMOde(e);
+    }
   });
 };
-renderGameModeCards(0);
+
