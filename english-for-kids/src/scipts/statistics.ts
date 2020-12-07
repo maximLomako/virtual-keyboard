@@ -39,5 +39,6 @@ export const renderStatisticsBlock = () => {
       <td class="table-item table-body__item">${item[i].errorsPercent}</td>
   </tr>`));
   }
+
 };
 
