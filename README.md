@@ -1,2 +1,1 @@
-# maximlomako-JS2020Q3
-Private repository for @maximlomako
+// branch for developers
