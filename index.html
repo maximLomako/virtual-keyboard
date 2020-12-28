@@ -1,0 +1,315 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>reveal.js</title>
+
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+    <section>TypeScript for the New Programmer
+      <img src="./examples/assets/ts.png" alt="ts-img"/>
+    </section>
+    <section>What is JavaScript? A Brief History
+      <img src="./examples/assets/evolution-of-javascript.png" alt="evolution-of-javascript-img"/>
+    </section>
+    <section data-auto-animate>
+      <h2 data-id="code-title">Example_1</h2>
+      <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        if ("" == 0) {
+        // It is! But why??
+        }
+        if (1 < x < 3) {
+        // True for *any* value of x!
+        }
+					</code></pre>
+    </section>
+    <section data-auto-animate>
+      <h2 data-id="code-title">Example_2</h2>
+      <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        const obj = { width: 10, height: 15 };
+        // Why is this NaN? Spelling is hard!
+        const area = obj.width * obj.heigth;
+					</code></pre>
+    </section>
+    <section data-auto-animate>
+      <h2 data-id="code-title">TypeScript: A Static Type Checker</h2>
+      <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        const obj = { width: 10, height: 15 };
+        const area = obj.width * obj.heigth;
+        Property 'heigth' does not exist on
+          type '{ width: number; height: number; }'.
+          Did you mean 'height'?
+					</code></pre>
+    </section>
+    <section data-auto-animate>
+      <h2 data-id="code-title">Syntax</h2>
+      <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        let a = (4
+        ')' expected.
+					</code></pre>
+    </section>
+    <section>
+      <section data-auto-animate>
+        <h2 data-id="code-title">Types</h2>
+        <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        console.log(4 / []);
+					</code></pre>
+      </section>
+      <section data-auto-animate>
+        <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        console.log(4 / []);
+        The right-hand side of an arithmetic operation must be of
+          type 'any', 'number', 'bigint' or an enum type.
+					</code></pre>
+      </section>
+    </section>
+    <section>Runtime Behavior
+      <img src="./examples/assets/jsts.png" alt="ts-img"/>
+    </section>
+    <section>Erased Types
+      <img src="./examples/assets/TypeScript-1.png" alt="ts-img"/>
+    </section>
+    <section data-auto-animate>
+      <h2 data-id="code-title">Types by Inference</h2>
+      <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        let helloWorld = "Hello World";
+        //  ^ = let helloWorld: string
+					</code></pre>
+    </section>
+    <section>
+      <section data-auto-animate>
+        <h2 data-id="code-title">Defining Types</h2>
+        <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        const user = {
+          name: "Hayes",
+          id: 0,
+        };
+					</code></pre>
+      </section>
+      <section data-auto-animate>
+        <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        interface User {
+          name: string;
+          id: number;
+          }
+					</code></pre>
+      </section>
+      <section data-auto-animate>
+        <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        const user: User = {
+          name: "Hayes",
+          id: 0,
+        };
+					</code></pre>
+      </section>
+      <section data-auto-animate>
+        <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        interface User {
+          name: string;
+          id: number;
+        }
+
+        const user: User = {
+          username: "Hayes",
+        Type '{ username: string; id: number; }'
+          is not assignable to type 'User'.
+          Object literal may only specify
+          known properties, and 'username'
+          does not exist in type 'User'.
+        Type '{ username: string; id: number; }'
+          is not assignable to type 'User'.
+          Object literal may only specify
+          known properties, and 'username'
+          does not exist in type 'User'.
+          id: 0,
+};
+					</code></pre>
+      </section>
+      <section data-auto-animate>
+        <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        interface User {
+          name: string;
+          id: number;
+        }
+
+        class UserAccount {
+          name: string;
+          id: number;
+
+          constructor(name: string, id: number) {
+            this.name = name;
+            this.id = id;
+          }
+        }
+
+        const user: User = new UserAccount("Murphy", 1);
+					</code></pre>
+      </section>
+      <section data-auto-animate>
+        <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        function getAdminUser(): User {
+          //...
+        }
+
+        function deleteUser(user: User) {
+          // ...
+        }
+					</code></pre>
+      </section>
+    </section>
+    <section>
+      <section data-auto-animate>
+        <h2 data-id="code-title">Unions</h2>
+        <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        type MyBool = true | false;
+					</code></pre>
+      </section>
+      <section data-auto-animate>
+        <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        type WindowStates = "open" | "closed" | "minimized";
+        type LockStates = "locked" | "unlocked";
+        type OddNumbersUnderTen = 1 | 3 | 5 | 7 | 9;
+					</code></pre>
+      </section>
+      <section data-auto-animate>
+        <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        function getLength(obj: string | string[]) {
+          return obj.length;
+        }
+					</code></pre>
+      </section>
+      <section data-auto-animate>
+        <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        function wrapInArray(obj: string | string[]) {
+          if (typeof obj === "string") {
+            return [obj];
+        //          ^ = (parameter) obj: string
+          } else {
+           return obj;
+          }
+        }
+					</code></pre>
+      </section>
+    </section>
+    <section>
+      <section data-auto-animate>
+        <h2 data-id="code-title">Generics</h2>
+        <pre data-id="code-animation">
+        <code class="hljs" data-trim data-line-numbers>
+        type StringArray = Array<string>;
+        type NumberArray = Array<number>;
+        type ObjectWithNameArray = Array<{name: string}>;
+					</code></pre>
+      </section>
+      <section data-auto-animate>
+        <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        interface Backpack<Type> {
+          add: (obj: Type) => void;
+          get: () => Type;
+        }
+
+        // This line is a shortcut to tell TypeScript
+          there is a
+        // constant called `backpack`,
+          and to not worry about where it came from.
+        declare const backpack: Backpack<string>;
+
+        // object is a string, because we declared
+            it above as the variable part of Backpack.
+        const object = backpack.get();
+
+        // Since the backpack variable is a string,
+            you can't pass a number to the add function.
+        backpack.add(23);
+        Argument of type 'number' is not assignable to
+            parameter of type 'string'.
+					</code></pre>
+      </section>
+    </section>
+    <section>
+      <section data-auto-animate>
+        <h2 data-id="code-title">Structural Type System</h2>
+        <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        interface Point {
+          x: number;
+          y: number;
+        }
+
+        function logPoint(p: Point) {
+         console.log(`${p.x}, ${p.y}`);
+        }
+
+        // logs "12, 26"
+        const point = { x: 12, y: 26 };
+        logPoint(point);
+					</code></pre>
+      </section>
+      <section data-auto-animate>
+        <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        const point3 = { x: 12, y: 26, z: 89 };
+          logPoint(point3); // logs "12, 26"
+
+          const rect = { x: 33, y: 3, width: 30, height: 80 };
+          logPoint(rect); // logs "33, 3"
+
+          const color = { hex: "#187ABF" };
+          logPoint(color);
+          Argument of type '{ hex: string; }' is not assignable to parameter of type 'Point'.
+            Type '{ hex: string; }' is missing the following properties from type 'Point': x, y
+					</code></pre>
+      </section>
+      <section data-auto-animate>
+        <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+        class VirtualPoint {
+          x: number;
+         y: number;
+
+          constructor(x: number, y: number) {
+            this.x = x;
+           this.y = y;
+          }
+        }
+
+        const newVPoint = new VirtualPoint(13, 56);
+        logPoint(newVPoint); // logs "13, 56"
+					</code></pre>
+      </section>
+    </section>
+    <section data-auto-animate>
+      <h2 data-id="code-title">NEXT STEPS</h2>
+      <ol>
+        <li>Read the full Handbook <a href="https://www.typescriptlang.org/docs/handbook/intro.html" /> from start to finish</a> (30m)</li>
+        <li>Training video<a href="https://www.youtube.com/watch?v=nyIpDs2DJ_c">Vladilen Minin </a>(RUS) </li>
+      </ol>
+    </section>
+
+  </div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+  // More info about initialization & config:
+  // - https://revealjs.com/initialization/
+  // - https://revealjs.com/config/
+  Reveal.initialize({
+    hash: true,
+
+    // Learn about plugins: https://revealjs.com/plugins/
+    plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+  });
+</script>
+</body>
+</html>
